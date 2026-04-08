@@ -1,0 +1,76 @@
+.advantages__header {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.advantages__header h2 {
+  margin-top: var(--space-md);
+}
+
+.advantages__sub {
+  max-width: 600px;
+  margin: var(--space-lg) auto 0;
+}
+
+.advantages__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.advantages__card {
+  padding: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-out);
+}
+
+.advantages__card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-border-hover);
+  background: var(--color-glass-strong);
+}
+
+.advantages__icon {
+  margin-bottom: var(--space-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 14px;
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(208,59,68,0.15);
+  color: var(--color-accent-glow);
+}
+
+.advantages__card h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.advantages__card-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  transition: width 0.6s var(--ease-out);
+}
+
+.advantages__card:hover .advantages__card-line {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .advantages__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .advantages__grid {
+    grid-template-columns: 1fr;
+  }
+}

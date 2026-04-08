@@ -1,0 +1,64 @@
+.partners__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.partners__header p {
+  margin-top: var(--space-md);
+}
+
+.partners__marquee {
+  overflow: hidden;
+  padding: var(--space-md) 0;
+}
+
+.partners__track {
+  display: flex;
+  gap: var(--space-2xl);
+  width: max-content;
+  animation: partner-scroll 50s linear infinite;
+}
+
+.partners__marquee--reverse .partners__track {
+  animation-direction: reverse;
+  animation-duration: 60s;
+}
+
+.partners__logo-wrap {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-glass-strong);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  transition: all 0.4s var(--ease-out);
+}
+
+.partners__logo-wrap:hover {
+  border-color: var(--color-border-hover);
+  background: rgba(255,255,255,0.06);
+  transform: scale(1.08);
+}
+
+.partners__logo-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.5);
+  opacity: 0.6;
+  transition: all 0.4s var(--ease-out);
+}
+
+.partners__logo-wrap:hover img {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
+}
+
+@keyframes partner-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

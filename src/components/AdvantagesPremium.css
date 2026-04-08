@@ -1,0 +1,367 @@
+/* ═════════════════════════════════════════════════
+   Advantages — Orbital Frequency Carousel v2
+   Premium light section with dial-inspired orbit
+   ═════════════════════════════════════════════════ */
+
+.adv-orbit {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #f5f5f7;
+  overflow: hidden;
+  padding-top: 4rem;
+}
+
+
+
+/* ── Layout: Split ── */
+.adv-orbit__layout {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  gap: 3rem;
+}
+
+/* ═══ LEFT: Detail Panel ═══ */
+.adv-orbit__detail {
+  flex: 0 0 42%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.adv-orbit__header .tag {
+  color: var(--color-accent);
+}
+
+.adv-orbit__main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #0A1628;
+  margin-top: 0.75rem;
+  letter-spacing: -0.03em;
+}
+
+/* Active card with icon */
+.adv-orbit__active-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-top: 2px solid var(--color-accent);
+  animation: advFadeIn 0.35s ease-out;
+}
+
+@keyframes advFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.adv-orbit__active-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  color: var(--color-accent);
+  background: rgba(208, 59, 68, 0.08);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.adv-orbit__active-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.adv-orbit__active-number {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.15em;
+}
+
+.adv-orbit__active-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  color: #0A1628;
+  margin: 0.3rem 0;
+  line-height: 1.2;
+}
+
+.adv-orbit__active-desc {
+  color: #5A7495;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Progress bars */
+.adv-orbit__progress {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.adv-orbit__bar {
+  height: 3px;
+  flex: 1;
+  border-radius: 2px;
+  background: rgba(10, 22, 40, 0.08);
+  transition: all 0.4s var(--ease-out);
+}
+
+.adv-orbit__bar.is-active {
+  background: var(--color-accent);
+}
+
+.adv-orbit__bar.is-past {
+  background: rgba(208, 59, 68, 0.25);
+}
+
+/* ═══ RIGHT: Orbit Wheel ═══ */
+.adv-orbit__wheel-wrap {
+  flex: 0 0 48%;
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 550px;
+}
+
+/* ── Decorative rings ── */
+.adv-orbit__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(10, 22, 40, 0.06);
+  pointer-events: none;
+}
+
+.adv-orbit__ring--outer {
+  width: 95%;
+  height: 95%;
+  border: 1px dashed rgba(10, 22, 40, 0.08);
+}
+
+.adv-orbit__ring--mid {
+  width: 72%;
+  height: 72%;
+}
+
+.adv-orbit__ring--inner {
+  width: 28%;
+  height: 28%;
+  border-color: rgba(208, 59, 68, 0.12);
+}
+
+/* ── Tick marks (dial aesthetic) ── */
+.adv-orbit__tick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 47.5%;
+  transform-origin: bottom center;
+  pointer-events: none;
+}
+
+.adv-orbit__tick::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 6px;
+  background: rgba(10, 22, 40, 0.08);
+  border-radius: 1px;
+}
+
+/* ── Center frequency wave ── */
+.adv-orbit__center {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.adv-orbit__wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.adv-orbit__wave-bar {
+  width: 3px;
+  border-radius: 3px;
+  background: var(--color-accent);
+  animation: wavePulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes wavePulse {
+  0%   { height: 6px;  opacity: 0.3; }
+  50%  { height: 28px; opacity: 1; }
+  100% { height: 10px; opacity: 0.4; }
+}
+
+.adv-orbit__center-label {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+}
+
+/* ── Rotating Wheel ── */
+.adv-orbit__wheel {
+  position: absolute;
+  width: 72%;
+  height: 72%;
+  will-change: transform;
+}
+
+/* ── Orbit Items ── */
+.adv-orbit__item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
+  transform: rotate(var(--base-angle)) translateY(-50%) translateY(-90px);
+  transition: filter 0.35s ease;
+}
+
+.adv-orbit__item-inner {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.75rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  border: 1.5px solid rgba(10, 22, 40, 0.06);
+  transition: all 0.4s var(--ease-out);
+  will-change: transform;
+}
+
+/* ── Active State ── */
+.adv-orbit__item.is-active .adv-orbit__item-inner {
+  transform: scale(1.25) !important;
+  box-shadow:
+    0 12px 40px rgba(208, 59, 68, 0.12),
+    0 4px 16px rgba(0,0,0,0.06);
+  border-color: var(--color-accent);
+  background: #fff;
+}
+
+.adv-orbit__item.is-active .adv-orbit__item-icon {
+  color: var(--color-accent);
+}
+
+.adv-orbit__item.is-active .adv-orbit__item-label {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ── Inactive State ── */
+.adv-orbit__item:not(.is-active) .adv-orbit__item-inner {
+  opacity: 0.45;
+  filter: blur(0.5px);
+  transform: scale(0.8);
+}
+
+/* ── Connector line from item to center ── */
+.adv-orbit__connector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(10, 22, 40, 0.06), transparent);
+  transform-origin: top center;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.adv-orbit__item.is-active .adv-orbit__connector {
+  background: linear-gradient(to bottom, rgba(208, 59, 68, 0.2), transparent);
+  opacity: 1;
+}
+
+/* ── Item Icon ── */
+.adv-orbit__item-icon {
+  width: 26px;
+  height: 26px;
+  color: #2B5672;
+  transition: color 0.3s ease;
+}
+
+.adv-orbit__item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.adv-orbit__item-label {
+  font-family: var(--font-heading);
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: #0A1628;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+  .adv-orbit__layout {
+    padding: 0 2rem;
+  }
+  .adv-orbit__wheel-wrap {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 900px) {
+  .adv-orbit__layout {
+    flex-direction: column;
+    padding: 6rem 2rem 2rem;
+    gap: 1.5rem;
+  }
+  .adv-orbit__detail {
+    flex: none;
+    text-align: center;
+    align-items: center;
+  }
+  .adv-orbit__active-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .adv-orbit__wheel-wrap {
+    flex: none;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .adv-orbit__tick {
+    display: none;
+  }
+}

@@ -1,0 +1,119 @@
+.pinned-showcase {
+  background-color: transparent;
+  position: relative;
+  padding: 8rem 0;
+  overflow: visible;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.pinned-showcase__container {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.pinned-showcase__left {
+  flex: 1;
+  position: sticky;
+  top: 20vh;
+  padding-right: 2rem;
+}
+
+.pinned-showcase__right {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-bottom: 10vh;
+}
+
+.showcase-card {
+  position: relative;
+  padding: 3rem;
+  border-radius: 1.5rem;
+  background: #0a0a18;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+}
+
+.showcase-card:hover {
+  background: #0f0f22;
+  transform: translateY(-5px);
+  border-color: rgba(0,122,255,0.2);
+  box-shadow: 0 0 30px rgba(0,122,255,0.06);
+}
+
+.showcase-card__number {
+  position: absolute;
+  top: -1.5rem;
+  right: 1rem;
+  font-family: var(--font-heading);
+  font-size: 10rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(255,255,255,0.02);
+  pointer-events: none;
+  transition: color 0.6s ease;
+}
+
+.showcase-card:hover .showcase-card__number {
+  color: rgba(208, 59, 68, 0.04);
+}
+
+.showcase-card__img-wrap {
+  width: 80px;
+  height: 80px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.showcase-card__logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 40px;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+}
+
+.social-pill:hover {
+  background: var(--color-accent);
+}
+
+.social-pill .icon {
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .pinned-showcase__container {
+    flex-direction: column;
+  }
+  
+  .pinned-showcase__left {
+    position: relative;
+    top: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .showcase-card {
+    padding: 2rem;
+  }
+}

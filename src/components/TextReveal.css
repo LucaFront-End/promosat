@@ -1,0 +1,31 @@
+.text-reveal-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  padding: 4rem 2rem;
+}
+
+.text-reveal-paragraph {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  width: 100%;
+}
+
+.reveal-word {
+  display: inline;
+  opacity: 0.1;
+  transition: text-shadow 0.3s ease;
+}
+
+.reveal-word:hover {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}

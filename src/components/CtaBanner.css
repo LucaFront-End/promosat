@@ -1,0 +1,96 @@
+/* ═════════════════════════════════════════════════
+   CTA Banner — Light Background
+   ═════════════════════════════════════════════════ */
+
+.cta-banner {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+  background: #f5f5f7;
+}
+
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cta-banner__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+.cta-banner__orb--1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(208, 59, 68, 0.06);
+  top: -100px;
+  right: -100px;
+  animation: orb-float 8s ease-in-out infinite;
+}
+
+.cta-banner__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(43, 86, 114, 0.05);
+  bottom: -80px;
+  left: -80px;
+  animation: orb-float 10s ease-in-out infinite reverse;
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -20px); }
+}
+
+.cta-banner__content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner__content .tag {
+  color: var(--color-accent);
+}
+
+.cta-banner__title {
+  font-family: var(--font-heading);
+  color: #0A1628;
+  margin-top: 1rem;
+}
+
+.cta-banner__desc {
+  max-width: 550px;
+  margin: 1.5rem auto 2.5rem;
+  color: #5A7495;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Override buttons for light bg */
+.cta-banner .btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+}
+
+.cta-banner .btn--primary:hover {
+  background: #b8323a;
+  box-shadow: 0 8px 24px rgba(208, 59, 68, 0.25);
+}
+
+.cta-banner .btn--outline {
+  border-color: rgba(10, 22, 40, 0.15);
+  color: #0A1628;
+}
+
+.cta-banner .btn--outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}

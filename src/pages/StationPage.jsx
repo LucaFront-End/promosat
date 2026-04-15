@@ -19,18 +19,16 @@ export default function StationPage() {
     if (!container) return;
 
     const heroEls = gsap.utils.toArray('.sp-hero__content > *', container);
-    gsap.set(heroEls, { autoAlpha: 0, y: 30 });
-    gsap.to(heroEls, {
-      autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.1, delay: 0.2,
-      ease: 'power2.out', clearProps: 'all',
-    });
+    gsap.fromTo(heroEls,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, delay: 0.15, ease: 'power2.out', clearProps: 'all' }
+    );
 
     const sections = gsap.utils.toArray('.sp-section', container);
-    gsap.set(sections, { autoAlpha: 0, y: 40 });
-    gsap.to(sections, {
-      autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.4,
-      ease: 'power2.out', clearProps: 'all',
-    });
+    gsap.fromTo(sections,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.3, ease: 'power2.out', clearProps: 'all' }
+    );
   }, [station]);
 
   if (!station) {

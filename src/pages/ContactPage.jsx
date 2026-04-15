@@ -12,18 +12,16 @@ export default function ContactPage() {
     if (!container) return;
 
     const heroEls = gsap.utils.toArray('.cp-hero__content > *', container);
-    gsap.set(heroEls, { autoAlpha: 0, y: 30 });
-    gsap.to(heroEls, {
-      autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.12, delay: 0.2,
-      ease: 'power2.out', clearProps: 'all',
-    });
+    gsap.fromTo(heroEls,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, delay: 0.15, ease: 'power2.out', clearProps: 'all' }
+    );
 
     const cards = gsap.utils.toArray('.cp-card', container);
-    gsap.set(cards, { autoAlpha: 0, y: 40 });
-    gsap.to(cards, {
-      autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.1, delay: 0.4,
-      ease: 'power2.out', clearProps: 'all',
-    });
+    gsap.fromTo(cards,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, delay: 0.3, ease: 'power2.out', clearProps: 'all' }
+    );
   }, []);
 
   const handleSubmit = (e) => {

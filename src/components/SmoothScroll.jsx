@@ -12,16 +12,29 @@ export default function SmoothScroll({ children }) {
   const prevPath = useRef(null);
 
   useEffect(() => {
-    // On route change (not first mount), scroll to top instantly
+    // On route change (not first mount), kill ALL ScrollTriggers + tweens
+    // then scroll to top so the new page starts clean
     if (prevPath.current !== null && prevPath.current !== pathname) {
+      // Kill every ScrollTrigger instance from the previous page
+      ScrollTrigger.getAll().forEach(st => st.kill());
+      // Kill all running GSAP tweens/timelines
+      gsap.killTweensOf('*');
+      // Reset scroll position instantly
       window.scrollTo({ top: 0, behavior: 'instant' });
-      // Refresh ScrollTrigger after route change so new page's triggers compute correctly
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
+
+      // After React re-renders the new page, refresh ScrollTrigger
+      // so the new page's triggers compute correctly
+      const raf1 = requestAnimationFrame(() => {
+        const raf2 = requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+        return () => cancelAnimationFrame(raf2);
       });
+      return () => cancelAnimationFrame(raf1);
     }
     prevPath.current = pathname;
   }, [pathname]);
 
   return <>{children}</>;
 }
+

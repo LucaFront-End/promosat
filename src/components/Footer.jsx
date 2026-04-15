@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { siteConfig, navLinks, offices } from '../data/content';
 import { useState } from 'react';
 import './Footer.css';
@@ -38,9 +39,14 @@ export default function Footer() {
           {/* Nav */}
           <div className="footer__col">
             <h4 className="footer__col-title">Nosotros</h4>
-            {navLinks.map((link) => (
-              <a key={link.label} href={link.href} className="footer__link">{link.label}</a>
-            ))}
+            {navLinks.map((link) => {
+              const isExternal = link.href.startsWith('http') || link.href.startsWith('#');
+              return isExternal ? (
+                <a key={link.label} href={link.href} className="footer__link">{link.label}</a>
+              ) : (
+                <Link key={link.label} to={link.href} className="footer__link">{link.label}</Link>
+              );
+            })}
           </div>
 
           {/* Contact */}

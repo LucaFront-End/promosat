@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { stationsGDL as stations } from '../data/content';
@@ -130,11 +131,12 @@ export default function StationsShowcase() {
           <div className="stations-stack__header">
             <span className="tag tag--accent"><span className="tag__dot" /> EMISORAS</span>
             <h2 className="stations-stack__title">
-              <span className="stations-stack__title-word">Red</span>
-              <span className="stations-stack__title-word">Nacional</span>
+              <span className="stations-stack__title-word">Las mejores</span>
+              <span className="stations-stack__title-word">emisoras</span>
+              <span className="stations-stack__title-word stations-stack__title-word--accent">a nivel Nacional</span>
             </h2>
             <p className="stations-stack__sub">
-              Más de {count} emisoras estratégicamente posicionadas en todo México para maximizar el alcance de tu marca.
+              Las {count} emisoras de la casa, estratégicamente posicionadas en todo México para maximizar el alcance de tu marca.
             </p>
           </div>
 
@@ -202,16 +204,24 @@ export default function StationsShowcase() {
                   </div>
                 </div>
 
-                {/* CTA */}
-                <a
-                  href={`https://wa.me/525552508990?text=Hola, me interesa cotizar publicidad en ${station.name}`}
-                  className="stack-card__cta"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>Cotizar Espacio</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+                {/* CTAs */}
+                <div className="stack-card__actions">
+                  <a
+                    href={`https://wa.me/525552508990?text=${encodeURIComponent(`Hola, me interesa cotizar publicidad en ${station.name}`)}`}
+                    className="stack-card__cta"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>Cotizar Espacio</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                  <Link
+                    to={`/emisora/${station.slug}`}
+                    className="stack-card__link"
+                  >
+                    Conocer más →
+                  </Link>
+                </div>
 
                 {/* Big number */}
                 <span className="stack-card__big-number">

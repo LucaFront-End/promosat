@@ -1,0 +1,257 @@
+/* ═════════════════════════════════════════════════
+   Contact Page — Premium Design
+   ═════════════════════════════════════════════════ */
+
+.contact-page {
+  background: var(--color-bg-primary);
+  min-height: 100vh;
+}
+
+/* ═══ Hero ═══ */
+.cp-hero {
+  position: relative;
+  padding: 10rem 0 5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cp-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cp-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+}
+
+.cp-hero__orb--1 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-accent);
+  top: -100px;
+  right: -100px;
+}
+
+.cp-hero__orb--2 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-blue);
+  bottom: -100px;
+  left: -100px;
+}
+
+.cp-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.cp-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+  margin: 1rem 0;
+}
+
+.cp-hero__title span {
+  color: var(--color-accent);
+}
+
+.cp-hero__sub {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ═══ Content Grid ═══ */
+.cp-content {
+  padding: 3rem 0 6rem;
+}
+
+.cp-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.cp-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.cp-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+/* ═══ Form ═══ */
+.cp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cp-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.cp-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cp-form__field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cp-form__field input,
+.cp-form__field textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  outline: none;
+}
+
+.cp-form__field input:focus,
+.cp-form__field textarea:focus {
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cp-form__field input::placeholder,
+.cp-form__field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.cp-form__field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.cp-form__submit {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+/* ═══ Sidebar ═══ */
+.cp-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cp-info-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.cp-info__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.cp-info__link:hover {
+  color: #fff;
+}
+
+.cp-info__link--wa {
+  color: #25D366;
+  border: none;
+}
+
+.cp-info__link--wa:hover {
+  color: #1db955;
+}
+
+/* Office Cards */
+.cp-office-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.cp-office-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.cp-office__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.cp-office__map {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+
+.cp-office__map:hover {
+  gap: 0.75rem;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 768px) {
+  .cp-hero {
+    padding: 8rem 0 3rem;
+  }
+  .cp-grid {
+    grid-template-columns: 1fr;
+  }
+  .cp-form__row {
+    grid-template-columns: 1fr;
+  }
+  .cp-card {
+    padding: 1.5rem;
+  }
+}

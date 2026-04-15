@@ -11,26 +11,26 @@ export default function TextReveal() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      const words = gsap.utils.toArray('.reveal-word');
-      
-      gsap.fromTo(words, 
-        { opacity: 0.1 },
-        {
-          opacity: 1,
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: '+=150%',
-            pin: true,
-            scrub: true,
-          }
-        }
-      );
-    }, containerRef);
-    
-    return () => ctx.revert();
+    const container = containerRef.current;
+    if (!container) return;
+
+    const words = gsap.utils.toArray('.reveal-word', container);
+
+    const st = ScrollTrigger.create({
+      trigger: container,
+      start: 'top top',
+      end: '+=150%',
+      pin: true,
+      scrub: true,
+      onUpdate: (self) => {
+        words.forEach((word, i) => {
+          const wordProgress = (self.progress - (i / words.length) * 0.8) / 0.2;
+          word.style.opacity = Math.max(0.08, Math.min(1, wordProgress * 5));
+        });
+      },
+    });
+
+    return () => st.kill();
   }, []);
 
   return (

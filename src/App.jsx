@@ -1,47 +1,37 @@
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import PinnedShowcase from './components/PinnedShowcase';
-import AdvantagesPremium from './components/AdvantagesPremium';
-import StationsShowcase from './components/StationsShowcase';
-import StatHighlight from './components/StatHighlight';
-import PartnersMarquee from './components/PartnersMarquee';
-import BlogPreview from './components/BlogPreview';
-import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import SmoothScroll from './components/SmoothScroll';
 import CustomCursor from './components/CustomCursor';
-import TextReveal from './components/TextReveal';
-import Preloader from './components/Preloader';
-import ContactSection from './components/ContactSection';
+import ScrollToTop from './components/ScrollToTop';
+
+/* Pages */
+import HomePage from './pages/HomePage';
+import StationPage from './pages/StationPage';
+import ContactPage from './pages/ContactPage';
+import PromediaPage from './pages/PromediaPage';
 
 export default function App() {
-  const [loadingObj, setLoadingObj] = useState(true);
-
   return (
     <>
       <div className="noise-overlay"></div>
       <div className="vignette-glow"></div>
-      {loadingObj && <Preloader onComplete={() => setLoadingObj(false)} />}
+      <ScrollToTop />
       <SmoothScroll>
-      <CustomCursor activeBlendMode={true} />
-      <Navbar />
-      <main>
-        <Hero />
-        <TextReveal />
-        <PinnedShowcase />
-        <AdvantagesPremium />
-        <StationsShowcase />
-        <StatHighlight />
-        <PartnersMarquee />
-        <BlogPreview />
-        <ContactSection />
-        <CtaBanner />
-      </main>
-      <Footer />
-      <WhatsAppFloat />
-    </SmoothScroll>
+        <CustomCursor activeBlendMode={true} />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/emisora/:slug" element={<StationPage />} />
+            <Route path="/contacto" element={<ContactPage />} />
+            <Route path="/promedia" element={<PromediaPage />} />
+          </Routes>
+        </main>
+        <Footer />
+        <WhatsAppFloat />
+      </SmoothScroll>
     </>
-    );
+  );
 }

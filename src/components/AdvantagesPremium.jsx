@@ -24,64 +24,56 @@ export default function AdvantagesPremium() {
   const angleStep = 360 / count;
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      // Header entrance
-      gsap.from('.adv-orbit__header', {
-        y: 50, opacity: 0, duration: 0.8,
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' }
-      });
+    const section = sectionRef.current;
+    if (!section) return;
 
-      // Scroll-driven orbit rotation
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: '+=300%',
-        pin: true,
-        scrub: 0.5,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const newIdx = Math.min(Math.floor(progress * count), count - 1);
-          setActiveIdx(newIdx);
+    // Entrance animation — runs once when section enters view
+    const entranceST = ScrollTrigger.create({
+      trigger: section,
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.from(section.querySelector('.adv-orbit__header'), {
+          y: 40, opacity: 0, duration: 0.7, ease: 'power2.out',
+        });
+      },
+    });
 
-          // Smooth wheel rotation
-          const targetAngle = -(progress * 360);
-          if (wheelRef.current) {
-            gsap.to(wheelRef.current, {
-              rotation: targetAngle,
-              duration: 0.3,
-              ease: 'power1.out',
-              overwrite: true,
-            });
-          }
+    // Pin the section and drive the orbit with scroll
+    const pinST = ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: `+=${count * 100}%`,
+      pin: true,
+      scrub: 0.6,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const newIdx = Math.min(Math.floor(progress * count), count - 1);
+        setActiveIdx(newIdx);
 
-          // Update each item: counter-rotate, scale & opacity based on proximity
-          itemsRef.current.forEach((el, i) => {
-            if (!el) return;
-            // Counter-rotate so items stay upright
-            const itemBaseAngle = angleStep * i;
-            const counterAngle = -(targetAngle + itemBaseAngle);
-            const inner = el.querySelector('.adv-orbit__item-inner');
-            if (inner) {
-              gsap.to(inner, {
-                rotation: counterAngle,
-                duration: 0.3,
-                ease: 'power1.out',
-                overwrite: true,
-              });
-            }
-          });
+        const targetAngle = -(progress * 360);
+        if (wheelRef.current) {
+          gsap.quickSetter(wheelRef.current, 'rotation', 'deg')(targetAngle);
         }
-      });
-    }, sectionRef);
 
-    return () => ctx.revert();
+        itemsRef.current.forEach((el, i) => {
+          if (!el) return;
+          const inner = el.querySelector('.adv-orbit__item-inner');
+          if (inner) {
+            gsap.quickSetter(inner, 'rotation', 'deg')(-(targetAngle + angleStep * i));
+          }
+        });
+      },
+    });
+
+    return () => {
+      entranceST.kill();
+      pinST.kill();
+    };
   }, [count, angleStep]);
 
   return (
     <section className="adv-orbit" id="ventajas" ref={sectionRef}>
-      {/* Gradient transition from dark to light */}
-
-
       <div className="adv-orbit__layout">
         {/* ── Left: Active Detail ── */}
         <div className="adv-orbit__detail">
@@ -108,35 +100,23 @@ export default function AdvantagesPremium() {
 
         {/* ── Right: Orbit Wheel ── */}
         <div className="adv-orbit__wheel-wrap">
-          {/* Decorative rings */}
           <div className="adv-orbit__ring adv-orbit__ring--outer" />
           <div className="adv-orbit__ring adv-orbit__ring--mid" />
           <div className="adv-orbit__ring adv-orbit__ring--inner" />
 
-          {/* Decorative dashes on outer ring */}
           {Array.from({ length: 36 }).map((_, i) => (
-            <div
-              key={i}
-              className="adv-orbit__tick"
-              style={{ transform: `rotate(${i * 10}deg)` }}
-            />
+            <div key={i} className="adv-orbit__tick" style={{ transform: `rotate(${i * 10}deg)` }} />
           ))}
 
-          {/* Center frequency wave */}
           <div className="adv-orbit__center">
             <div className="adv-orbit__wave">
               {Array.from({ length: 9 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="adv-orbit__wave-bar"
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                />
+                <div key={i} className="adv-orbit__wave-bar" style={{ animationDelay: `${i * 0.1}s` }} />
               ))}
             </div>
             <span className="adv-orbit__center-label">FM</span>
           </div>
 
-          {/* Rotating items on the orbit */}
           <div className="adv-orbit__wheel" ref={wheelRef}>
             {advantages.map((adv, i) => {
               const angle = angleStep * i;
@@ -152,7 +132,6 @@ export default function AdvantagesPremium() {
                     <div className="adv-orbit__item-icon">{ICONS_SVG[i]}</div>
                     <span className="adv-orbit__item-label">{adv.title}</span>
                   </div>
-                  {/* Connector line to center */}
                   <div className="adv-orbit__connector" />
                 </div>
               );

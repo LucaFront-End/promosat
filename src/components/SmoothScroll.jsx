@@ -1,43 +1,27 @@
-import { useEffect } from 'react';
-import Lenis from 'lenis';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
+// No Lenis — native scroll works perfectly with GSAP ScrollTrigger pins
+// Lenis requires ScrollTrigger.scrollerProxy() which conflicts with multiple pins
 export default function SmoothScroll({ children }) {
+  const { pathname } = useLocation();
+  const prevPath = useRef(null);
+
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo easing
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Integramos con GSAP ScrollTrigger para asegurar sincronización perfecta
-    // Solo si gsap está importado
-    import('gsap').then(({ gsap }) => {
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
+    // On route change (not first mount), scroll to top instantly
+    if (prevPath.current !== null && prevPath.current !== pathname) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      // Refresh ScrollTrigger after route change so new page's triggers compute correctly
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
-    });
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+    }
+    prevPath.current = pathname;
+  }, [pathname]);
 
   return <>{children}</>;
 }

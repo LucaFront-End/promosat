@@ -15,8 +15,18 @@
 .pinned-showcase__left {
   flex: 1;
   position: sticky;
-  top: 20vh;
+  top: 6rem;
   padding-right: 2rem;
+}
+
+.pinned-showcase__title {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.text-accent {
+  color: var(--color-accent);
 }
 
 .pinned-showcase__right {
@@ -61,16 +71,18 @@
   color: rgba(208, 59, 68, 0.04);
 }
 
+/* White container for logos so they don't get lost */
 .showcase-card__img-wrap {
   width: 80px;
   height: 80px;
-  background: rgba(0,0,0,0.5);
+  background: #ffffff;
   border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  border: 1px solid rgba(255,255,255,0.05);
+  padding: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
 .showcase-card__logo {
@@ -79,27 +91,26 @@
   object-fit: contain;
 }
 
-.social-pill {
+/* Contact Button replacing social pills */
+.showcase-card__contact-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 40px;
-  background: rgba(255,255,255,0.05);
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  background: var(--gradient-accent);
   color: #fff;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-  margin-right: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all 0.35s var(--ease-out);
+  text-decoration: none;
 }
 
-.social-pill:hover {
-  background: var(--color-accent);
-}
-
-.social-pill .icon {
-  font-weight: bold;
+.showcase-card__contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(208, 59, 68, 0.3);
 }
 
 @media (max-width: 992px) {

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { promediaContent, siteConfig } from '../data/content';
@@ -11,7 +11,7 @@ export default function PromediaPage() {
   const scrollWrapperRef = useRef(null);
   const counterRefs = useRef([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const page = pageRef.current;
     if (!page) return;
 

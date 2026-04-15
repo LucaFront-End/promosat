@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useLayoutEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { advantages } from '../data/content';
@@ -23,7 +23,7 @@ export default function AdvantagesPremium() {
   const count = advantages.length;
   const angleStep = 360 / count;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 

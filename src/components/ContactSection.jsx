@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig, offices } from '../data/content';
@@ -10,7 +10,7 @@ export default function ContactSection() {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       // Header entrance
       gsap.from('.offices__header > *', {

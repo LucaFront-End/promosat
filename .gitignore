@@ -1,7 +1,4 @@
-# Videos (too large for GitHub)
-public/videos/*.mp4
-
-# Source assets from Drive (too large)
+# Source assets from Drive (too large for GitHub)
 drive-content/
 *.zip
 

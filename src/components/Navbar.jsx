@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { siteConfig, navLinks } from '../data/content';
+import { siteConfig, navLinks, stationsGDL } from '../data/content';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
@@ -80,29 +80,57 @@ export default function Navbar() {
             const isInternal = link.href.startsWith('/') && !link.href.startsWith('http');
             const isAnchor = link.href.startsWith('/#');
 
+            const isEmisoras = link.label === 'Emisoras';
+            
+            let LinkComponent;
+
             if (isAnchor) {
-              return isHome ? (
+              LinkComponent = isHome ? (
                 // On home: smooth scroll to section
                 <button
-                  key={link.label}
                   className="navbar__link"
                   onClick={() => handleAnchorLink(link.href)}
                 >
                   {link.label}
+                  {isEmisoras && <span className="navbar__chevron">▼</span>}
                 </button>
               ) : (
                 // Off home: navigate to home then to anchor
-                <Link key={link.label} to={link.href} className="navbar__link" onClick={handleNavClick}>
+                <Link to={link.href} className="navbar__link" onClick={isEmisoras ? undefined : handleNavClick}>
+                  {link.label}
+                  {isEmisoras && <span className="navbar__chevron">▼</span>}
+                </Link>
+              );
+            } else {
+              LinkComponent = (
+                <Link to={link.href} className="navbar__link" onClick={handleNavClick}>
                   {link.label}
                 </Link>
               );
             }
 
-            return (
-              <Link key={link.label} to={link.href} className="navbar__link" onClick={handleNavClick}>
-                {link.label}
-              </Link>
-            );
+            if (isEmisoras) {
+              return (
+                <div key={link.label} className="navbar__dropdown-wrapper">
+                  {LinkComponent}
+                  <div className="navbar__dropdown">
+                    {stationsGDL.map((station) => (
+                      <Link 
+                        key={station.slug} 
+                        to={`/emisora/${station.slug}`}
+                        className="navbar__dropdown-item"
+                        onClick={handleNavClick}
+                      >
+                        <img src={station.logo} alt={station.name} className="navbar__dropdown-logo" />
+                        <span>{station.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return <div key={link.label}>{LinkComponent}</div>;
           })}
         </div>
 
@@ -144,6 +172,21 @@ export default function Navbar() {
                 <Link to={link.href} className="navbar__mobile-link" onClick={handleNavClick}>
                   {link.label}
                 </Link>
+                {link.label === 'Emisoras' && (
+                  <div className="navbar__mobile-dropdown">
+                    {stationsGDL.map((station) => (
+                      <Link 
+                        key={station.slug}
+                        to={`/emisora/${station.slug}`}
+                        className="navbar__mobile-dropdown-item"
+                        onClick={handleNavClick}
+                      >
+                        <img src={station.logo} alt="" />
+                        <span>{station.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             ))}
             <a href={siteConfig.whatsapp} className="btn btn--primary" style={{ marginTop: '1rem', width: '100%' }}>

@@ -25,7 +25,7 @@ export default function PromediaPage() {
     const track = scrollWrapperRef.current?.querySelector('.pm-podcasts-track');
     if (track) {
       const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
-      const tween = gsap.to(track, {
+      gsap.to(track, {
         x: getScrollAmount,
         ease: "none",
         scrollTrigger: {
@@ -33,7 +33,6 @@ export default function PromediaPage() {
           start: "top top",
           end: () => `+=${getScrollAmount() * -1}`,
           pin: true,
-          animation: tween,
           scrub: 1,
           invalidateOnRefresh: true
         }

@@ -142,14 +142,28 @@ export default function StationPage() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
                 </a>
               </div>
-              <div className="sp-player__embed">
-                <iframe
-                  src={station.tuneinEmbed}
-                  title={`${station.name} en vivo`}
-                  className="sp-player__iframe"
-                  allow="autoplay"
-                  loading="lazy"
-                />
+              <div className="sp-player__embed-wrapper" style={{ '--station-accent': station.accentColor }}>
+                <div className="sp-player__embed-header">
+                  <div className="sp-player__badge">
+                    <span className="sp-player__pulse" />
+                    En Aire
+                  </div>
+                  <div className="sp-player__visualizer">
+                    <span className="sp-bar"></span>
+                    <span className="sp-bar"></span>
+                    <span className="sp-bar"></span>
+                    <span className="sp-bar"></span>
+                  </div>
+                </div>
+                <div className="sp-player__embed">
+                  <iframe
+                    src={station.tuneinEmbed}
+                    title={`${station.name} en vivo`}
+                    className="sp-player__iframe"
+                    allow="autoplay"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>

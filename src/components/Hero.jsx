@@ -2,11 +2,10 @@ import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../data/content';
+import { HERO_VIDEO } from '../data/videos';
 import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const HERO_VIDEO_URL = '/videos/hero_reel.mp4';
 
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -70,7 +69,7 @@ export default function Hero() {
       <div className="hero-cinematic__bg" ref={bgRef}>
         <video
           className="hero-cinematic__bg-video"
-          src={HERO_VIDEO_URL}
+          src={HERO_VIDEO}
           autoPlay muted loop playsInline preload="auto"
         />
       </div>

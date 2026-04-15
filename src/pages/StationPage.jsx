@@ -2,7 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { stationsGDL, stationVideos, siteConfig } from '../data/content';
+import { stationsGDL, siteConfig } from '../data/content';
+import { STATION_VIDEOS } from '../data/videos';
 import './StationPage.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -41,7 +42,7 @@ export default function StationPage() {
     );
   }
 
-  const videoSrc = stationVideos[station.videoId];
+  const videoSrc = STATION_VIDEOS[station.videoId];
   const waMessage = encodeURIComponent(`Hola, me interesa cotizar publicidad en ${station.name}`);
   const waLink = `https://wa.me/525552508990?text=${waMessage}`;
 

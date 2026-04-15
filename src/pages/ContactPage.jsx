@@ -12,21 +12,25 @@ export default function ContactPage() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Smooth Entrance animation for Header
-    const heroEls = gsap.utils.toArray('.cp-hero__content > *', container);
-    gsap.fromTo(heroEls,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 0.2, ease: 'power3.out', clearProps: 'all' }
-    );
+    const ctx = gsap.context(() => {
+      // Smooth Entrance animation for Header
+      const heroEls = gsap.utils.toArray('.cp-hero__content > *', container);
+      gsap.fromTo(heroEls,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, delay: 0.2, ease: 'power3.out', clearProps: 'all' }
+      );
 
-    // Staggered floating cards entrance
-    const cards = gsap.utils.toArray('.cp-glass-panel', container);
-    gsap.fromTo(cards,
-      { opacity: 0, y: 50, rotateX: 5 },
-      { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.15, delay: 0.4, ease: 'power3.out', clearProps: 'all' }
-    );
+      // Staggered floating cards entrance
+      const cards = gsap.utils.toArray('.cp-glass-panel', container);
+      gsap.fromTo(cards,
+        { opacity: 0, y: 50, rotateX: 5 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.15, delay: 0.4, ease: 'power3.out', clearProps: 'all' }
+      );
+    }, container);
 
+    return () => ctx.revert();
   }, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

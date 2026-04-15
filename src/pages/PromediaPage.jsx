@@ -15,47 +15,50 @@ export default function PromediaPage() {
     const page = pageRef.current;
     if (!page) return;
 
-    /* ── Hero staggered entrance ── */
-    const heroEls = gsap.utils.toArray('.pm-hero__content > *', page);
-    gsap.fromTo(heroEls,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.12, delay: 0.2, ease: 'power3.out', clearProps: 'all' }
-    );
+    const ctx = gsap.context(() => {
+      /* ── Hero staggered entrance ── */
+      const heroEls = gsap.utils.toArray('.pm-hero__content > *', page);
+      gsap.fromTo(heroEls,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1, stagger: 0.12, delay: 0.2, ease: 'power3.out', clearProps: 'all' }
+      );
 
-    /* ── Bento cards stagger in ── */
-    const bentos = gsap.utils.toArray('.pm-bento', page);
-    gsap.fromTo(bentos,
-      { opacity: 0, y: 60, scale: 0.95 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.08, delay: 0.4, ease: 'power3.out', clearProps: 'all' }
-    );
+      /* ── Bento cards stagger in ── */
+      const bentos = gsap.utils.toArray('.pm-bento', page);
+      gsap.fromTo(bentos,
+        { opacity: 0, y: 60, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.08, delay: 0.4, ease: 'power3.out', clearProps: 'all' }
+      );
 
-    /* ── Sections fade-in ── */
-    const sections = gsap.utils.toArray('.pm-section', page);
-    gsap.fromTo(sections,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, delay: 0.5, ease: 'power3.out', clearProps: 'all' }
-    );
+      /* ── Sections fade-in ── */
+      const sections = gsap.utils.toArray('.pm-section', page);
+      gsap.fromTo(sections,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, delay: 0.5, ease: 'power3.out', clearProps: 'all' }
+      );
 
-    /* ── Horizontal Pinned Podcast scroll ── */
-    const track = scrollWrapperRef.current?.querySelector('.pm-podcasts-track');
-    if (track) {
-      const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
-      gsap.to(track, {
-        x: getScrollAmount,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: scrollWrapperRef.current,
-          start: 'top top',
-          end: () => `+=${getScrollAmount() * -1}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true
-        }
-      });
-    }
+      /* ── Horizontal Pinned Podcast scroll ── */
+      const track = scrollWrapperRef.current?.querySelector('.pm-podcasts-track');
+      if (track) {
+        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+        gsap.to(track, {
+          x: getScrollAmount,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: scrollWrapperRef.current,
+            start: 'top top',
+            end: () => `+=${getScrollAmount() * -1}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+      }
+    }, page);
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    return () => ctx.revert();
   }, []);
+
 
   const heroStats = [
     { value: '52+', label: 'Años experiencia' },

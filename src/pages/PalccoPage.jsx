@@ -123,14 +123,14 @@ export default function PalccoPage() {
           
           <div className="palcco-bento">
             <div className="palcco-bento__item palcco-bento__item--large">
-              <img src="/palcco-teatro.png" alt="Teatro Moncayo" className="palcco-bento__img" />
+              <img src="/images/palcco/teatro_moncayo.jpg" alt="Teatro Moncayo" className="palcco-bento__img" />
               <div className="palcco-bento__content">
                 <h3>Teatro José Pablo Moncayo</h3>
                 <p>1,963 espectadores. Escenario de 35x20 metros con piso Harlequin y acústica inmersiva incomparable. La joya de la corona para eventos premium.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="/images/palcco/consuelo_auditorium.png" alt="Sala Consuelo" className="palcco-bento__img" />
+              <img src="/images/palcco/sala_consuelo.png" alt="Sala Consuelo" className="palcco-bento__img" />
               <div className="palcco-bento__content">
                 <h3>Sala Consuelo Velázquez</h3>
                 <p>399 butacas íntimas. Intimidad escénica ideal para conferencias teatrales de aforo mediano, obras y recitales exclusivos.</p>

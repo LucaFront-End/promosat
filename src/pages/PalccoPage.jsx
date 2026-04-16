@@ -144,7 +144,7 @@ export default function PalccoPage() {
               </div>
             </div>
             <div className="palcco-bento__item palcco-bento__item--large" style={{ gridColumn: '1 / -1' }}>
-              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=2000" alt="Foro Bailmex" className="palcco-bento__img" />
+              <img src="/images/palcco/foro_bailmex.jpg" alt="Foro Bailmex" className="palcco-bento__img" />
               <div className="palcco-bento__content" style={{ background: 'linear-gradient(90deg, rgba(13,16,23,0.95), transparent)' }}>
                 <h3>Foro BAILMEX y Ágora</h3>
                 <p>5,000 M2 de Velaria acústica e impermeable para experiencias multitudinarias y eventos deportivos imponentes al aire libre sin riesgos ambientales.</p>

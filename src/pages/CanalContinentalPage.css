@@ -1,0 +1,189 @@
+/* ═════════════════════════════════════════════════
+   Canal Continental — Studio Production Aesthetic
+   ═════════════════════════════════════════════════ */
+
+.canal-page {
+  background: var(--color-bg-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ═══ Hero ═══ */
+.canal-hero {
+  padding: 12rem 0 6rem;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.canal-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.canal-hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.canal-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+}
+
+.canal-hero__desc {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 90%;
+  margin-bottom: 1rem;
+}
+
+.canal-hero__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+}
+
+.canal-hero__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 2;
+  filter: contrast(1.1) brightness(0.9);
+}
+
+.canal-hero__orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: var(--color-accent);
+  filter: blur(100px);
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* ═══ Services ═══ */
+.canal-services {
+  padding: 8rem 0;
+  background: linear-gradient(180deg, var(--color-bg-primary) 0%, rgba(20,24,34,0.3) 100%);
+}
+
+.canal-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.canal-service {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+}
+
+.canal-service:hover {
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-8px);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.canal-service__icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 1rem;
+  background: rgba(0,0,0,0.3);
+  border-radius: 16px;
+}
+
+.canal-service h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.canal-service p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ═══ Parallax ═══ */
+.canal-parallax {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.canal-parallax__img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.4;
+  transform: scale(1);
+}
+
+.canal-parallax__overlay {
+  position: relative;
+  z-index: 1;
+  background: rgba(0,0,0,0.6);
+  padding: 4rem;
+  border-radius: 32px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.canal-parallax__overlay h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.canal-parallax__overlay span {
+  color: var(--color-accent);
+}
+
+@media (max-width: 900px) {
+  .canal-hero {
+    padding: 8rem 0 4rem;
+  }
+  .canal-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .canal-hero__text {
+    align-items: center;
+    text-align: center;
+  }
+  .canal-parallax__overlay {
+    padding: 2rem;
+    width: 90%;
+  }
+}

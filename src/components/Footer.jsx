@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer__col footer__col--brand">
             <div className="footer__brand">
-              <img src={siteConfig.logoWhite} alt={siteConfig.name} className="footer__logo" />
+              <img src={siteConfig.logo} alt={siteConfig.name} className="footer__logo" />
               <span className="footer__brand-name">Promosat</span>
             </div>
             <p className="body-sm footer__brand-desc">

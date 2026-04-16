@@ -50,16 +50,19 @@ export const aboutContent = {
       name: 'Grupo Promomedios',
       description: 'Con 52 años en medios de comunicación, aliado estratégico con instituciones y líderes con gran potencial en Branding.',
       logo: 'https://static.wixstatic.com/media/45119e_e4fafee36852408f9e3ee1e6dec03d8d~mv2.png/v1/crop/x_84,y_0,w_3085,h_2540/fill/w_200,h_165,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logotipo_GRUPO%20PROMOMEDIOS.png',
+      href: null // Representa todo el grupo, no hay página separada que no sea Home o Contacto
     },
     {
       name: 'Canal Continental',
       description: 'Creamos todo el soporte operativo, producción y talento que ayuda a satisfacer el gusto Radiofónico y activaciones en locación a Nivel Local y Nacional.',
       logo: 'https://static.wixstatic.com/media/45119e_9edd1b7e5551435c97c76c80fcccdf6f~mv2.png/v1/fill/w_200,h_200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(80).png',
+      href: '/canal-continental'
     },
     {
       name: 'PALCCO',
       description: 'El Palacio de la Cultura y los Congresos es uno de los complejos más emblemáticos de la Zona Metropolitana de Guadalajara. ¡El lugar perfecto para tu EVENTO!',
       logo: 'https://static.wixstatic.com/media/45119e_6177997cea0642aeba05ad8aa1ac4bb9~mv2.png/v1/crop/x_0,y_0,w_1000,h_467/fill/w_200,h_94,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PALCCO_ColorN.png',
+      href: '/palcco'
     },
   ],
 };

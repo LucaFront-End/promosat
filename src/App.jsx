@@ -12,6 +12,9 @@ import StationPage from './pages/StationPage';
 import ContactPage from './pages/ContactPage';
 import PromediaPage from './pages/PromediaPage';
 
+import CanalContinentalPage from './pages/CanalContinentalPage';
+import PalccoPage from './pages/PalccoPage';
+
 export default function App() {
   return (
     <>
@@ -27,6 +30,8 @@ export default function App() {
             <Route path="/emisora/:slug" element={<StationPage />} />
             <Route path="/contacto" element={<ContactPage />} />
             <Route path="/promedia" element={<PromediaPage />} />
+            <Route path="/canal-continental" element={<CanalContinentalPage />} />
+            <Route path="/palcco" element={<PalccoPage />} />
           </Routes>
         </main>
         <Footer />

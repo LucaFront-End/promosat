@@ -20,17 +20,20 @@ export default function CanalContinentalPage() {
       });
 
       // Services float in
-      gsap.from('.canal-service', {
-        scrollTrigger: {
-          trigger: '.canal-services',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'back.out(1.2)'
-      });
+      gsap.fromTo('.canal-service', 
+        { y: 40, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.canal-services',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'back.out(1.2)'
+        }
+      );
 
       // Parallax image
       gsap.to('.canal-parallax__img', {

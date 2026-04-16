@@ -61,7 +61,7 @@ export default function PalccoPage() {
       {/* ── Hero ── */}
       <section className="palcco-hero">
         <div className="palcco-hero__bg">
-          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2000" alt="Auditorio" />
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000" alt="Palcco Auditorio" />
           <div className="palcco-hero__overlay"></div>
         </div>
         <div className="container">
@@ -118,24 +118,24 @@ export default function PalccoPage() {
           
           <div className="palcco-bento">
             <div className="palcco-bento__item palcco-bento__item--large">
-              <img src="https://images.unsplash.com/photo-1507676184212-d0330a151b14?auto=format&fit=crop&q=80&w=1200" alt="Teatro Principal" className="palcco-bento__img" />
+              <img src="https://images.unsplash.com/photo-1501281668741-9866610ed917?auto=format&fit=crop&q=80&w=1200" alt="Teatro Principal" className="palcco-bento__img" />
               <div className="palcco-bento__content">
-                <h3>Teatro Principal</h3>
-                <p>Acústica impecable y capacidad masiva para los shows más exigentes.</p>
+                <h3>Teatro Moncayo</h3>
+                <p>Acústica impecable desarrollada por expertos mundiales y capacidad masiva para los shows de talla internacional más exigentes.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800" alt="Salones" className="palcco-bento__img" />
+              <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800" alt="Salones" className="palcco-bento__img" />
               <div className="palcco-bento__content">
                 <h3>Salas de Convenciones</h3>
-                <p>Módulos ajustables con tecnología audiovisual.</p>
+                <p>Módulos ajustables con lo último en tecnología audiovisual para conferencias corporativas.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800" alt="Exposiciones" className="palcco-bento__img" />
+              <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800" alt="Exposiciones" className="palcco-bento__img" />
               <div className="palcco-bento__content">
-                <h3>Área de Exposiciones</h3>
-                <p>Miles de metros cuadrados para stands comerciales.</p>
+                <h3>Ágora Central</h3>
+                <p>Miles de metros cuadrados a cielo abierto y cerrados para stands, exposiciones y activaciones BTL.</p>
               </div>
             </div>
           </div>

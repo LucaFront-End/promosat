@@ -130,7 +130,7 @@ export default function PalccoPage() {
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="https://images.unsplash.com/photo-1543804368-2a784d0df54f?auto=format&fit=crop&q=80&w=800" alt="Sala Consuelo" className="palcco-bento__img" />
+              <img src="/images/palcco/consuelo_auditorium.png" alt="Sala Consuelo" className="palcco-bento__img" />
               <div className="palcco-bento__content">
                 <h3>Sala Consuelo Velázquez</h3>
                 <p>399 butacas íntimas. Intimidad escénica ideal para conferencias teatrales de aforo mediano, obras y recitales exclusivos.</p>

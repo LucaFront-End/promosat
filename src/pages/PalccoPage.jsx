@@ -118,7 +118,7 @@ export default function PalccoPage() {
           
           <div className="palcco-bento">
             <div className="palcco-bento__item palcco-bento__item--large">
-              <img src="https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Teatro Principal" className="palcco-bento__img" />
+              <img src="/palcco-teatro.png" alt="Teatro Principal" className="palcco-bento__img" />
               <div className="palcco-bento__content">
                 <h3>Teatro Moncayo</h3>
                 <p>Acústica impecable desarrollada por expertos mundiales y capacidad masiva para los shows de talla internacional más exigentes.</p>

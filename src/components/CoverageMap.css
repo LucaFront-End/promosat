@@ -1,0 +1,403 @@
+/* ═════════════════════════════════════════════════
+   Coverage Map — Leaflet Dark Theme (Jasman-style)
+   ═════════════════════════════════════════════════ */
+
+.coverage-map {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+.coverage-map__orb {
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(39, 90, 245, 0.06);
+  pointer-events: none;
+}
+
+.coverage-map__header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+}
+
+.coverage-map__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: rgba(39, 90, 245, 0.12);
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.coverage-map__tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: coveragePulse 2s infinite;
+}
+
+@keyframes coveragePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(39, 90, 245, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(39, 90, 245, 0); }
+}
+
+.coverage-map__title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.coverage-map__title span {
+  background: linear-gradient(135deg, var(--color-accent), #7dd3fc, var(--color-accent));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── Region Filter Pills ── */
+.coverage-map__filters {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.coverage-map__filter-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.coverage-map__filter-btn:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.coverage-map__filter-btn--active {
+  border-color: rgba(39, 90, 245, 0.5);
+  background: rgba(39, 90, 245, 0.12);
+  color: #fff;
+}
+
+/* ── Map + Cards Grid ── */
+.coverage-map__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.coverage-map__map-wrap {
+  border-radius: 28px;
+  overflow: hidden;
+  height: 560px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.coverage-map__map-wrap .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #0a0e17;
+}
+
+/* Override Leaflet Popup */
+.coverage-map__map-wrap .leaflet-popup-content-wrapper {
+  background: rgba(15, 20, 35, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 0;
+}
+
+.coverage-map__map-wrap .leaflet-popup-content {
+  margin: 0;
+  padding: 14px 16px;
+  font-family: var(--font-heading);
+  min-width: 200px;
+}
+
+.coverage-map__map-wrap .leaflet-popup-tip {
+  background: rgba(15, 20, 35, 0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.coverage-map__map-wrap .leaflet-popup-close-button {
+  color: rgba(255,255,255,0.5);
+  top: 8px !important;
+  right: 10px !important;
+}
+
+/* ── Info Bar ── */
+.coverage-map__info-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coverage-map__info-region {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+
+.coverage-map__info-count {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+.coverage-map__info-badge {
+  padding: 7px 14px;
+  border-radius: 10px;
+  background: rgba(39, 90, 245, 0.12);
+  border: 1px solid rgba(39, 90, 245, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--color-accent);
+}
+
+/* ── Station Cards ── */
+.coverage-map__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.coverage-map__cards::-webkit-scrollbar {
+  width: 4px;
+}
+
+.coverage-map__cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.coverage-map__cards::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 99px;
+}
+
+.coverage-card {
+  padding: 18px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.coverage-card:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.coverage-card--active {
+  background: rgba(39, 90, 245, 0.08);
+  border-color: rgba(39, 90, 245, 0.35);
+}
+
+.coverage-card__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coverage-card__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  background: rgba(39, 90, 245, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.coverage-card--active .coverage-card__icon {
+  background: linear-gradient(135deg, var(--color-accent), #7dd3fc);
+}
+
+.coverage-card__icon svg {
+  stroke: var(--color-accent);
+}
+
+.coverage-card--active .coverage-card__icon svg {
+  stroke: #fff;
+}
+
+.coverage-card__name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+
+.coverage-card__meta {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+.coverage-card__tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(39, 90, 245, 0.08);
+  color: var(--color-accent);
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.coverage-card__details {
+  margin-top: 14px;
+  padding-top: 14px;
+  margin-left: 50px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  animation: cardReveal 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.coverage-card__detail-row {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.coverage-card__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.coverage-card__action {
+  flex: 1;
+  padding: 11px 0;
+  border-radius: 12px;
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.coverage-card__action--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.coverage-card__action--primary:hover {
+  filter: brightness(1.15);
+}
+
+.coverage-card__action--secondary {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.coverage-card__action--secondary:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* ── Popup Content ── */
+.coverage-popup__name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.coverage-popup__dial {
+  font-size: 12px;
+  color: var(--color-accent);
+  margin-bottom: 2px;
+}
+
+.coverage-popup__city {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  .coverage-map__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coverage-map__map-wrap {
+    height: 400px;
+  }
+
+  .coverage-map__cards {
+    max-height: 450px;
+  }
+}

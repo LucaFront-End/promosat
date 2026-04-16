@@ -38,17 +38,23 @@ export default function PalccoPage() {
       // Stats counter
       const stats = gsap.utils.toArray('.palcco-stat__val');
       stats.forEach(stat => {
-        gsap.from(stat, {
-          scrollTrigger: {
-            trigger: stat,
-            start: 'top 90%',
-          },
-          textContent: 0,
-          duration: 2,
-          ease: 'power2.out',
-          snap: { textContent: 1 },
-          stagger: 0.2
-        });
+        const targetNumber = parseInt(stat.getAttribute('data-value'), 10);
+        if (targetNumber) {
+          gsap.from(stat, {
+            scrollTrigger: {
+              trigger: stat,
+              start: 'top 90%',
+            },
+            textContent: 0,
+            duration: 2.5,
+            ease: 'power2.out',
+            snap: { textContent: 1 },
+            onUpdate: function() {
+              const current = Math.ceil(this.targets()[0].textContent);
+              this.targets()[0].innerHTML = current.toLocaleString() + (stat.getAttribute('data-suffix') || '');
+            }
+          });
+        }
       });
 
     }, pageRef);
@@ -66,13 +72,12 @@ export default function PalccoPage() {
         </div>
         <div className="container">
           <div className="palcco-hero__content">
-            <div className="tag tag--accent">Sede Oficial</div>
+            <div className="tag tag--accent">El Palacio de la Cultura y los Congresos</div>
             <h1 className="palcco-hero__title">
-              Palacio de la Cultura<br />
-              <span className="text-gradient">y los Congresos</span>
+              Sede Multi <span className="text-gradient">Dinámica</span>
             </h1>
             <p className="palcco-hero__desc">
-              Uno de los complejos más emblemáticos de la Zona Metropolitana de Guadalajara. El lugar perfecto, majestuoso y tecnológicamente avanzado para tu próximo gran evento.
+              Uno de los complejos más emblemáticos de la Zona Metropolitana de Guadalajara. El entorno tecnológicamente avanzado perfecto con teatros, ágoras y centros de negocios que complementan la oferta de tu próximo gran evento.
             </p>
             <div className="palcco-hero__actions">
               <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
@@ -91,18 +96,18 @@ export default function PalccoPage() {
         <div className="container">
           <div className="palcco-stats-wrapper">
             <div className="palcco-stat">
-              <div className="palcco-stat__val">3</div>
-              <div className="palcco-stat__label">Teatros de Clase Mundial</div>
+              <div className="palcco-stat__val" data-value="35" data-suffix="">35</div>
+              <div className="palcco-stat__label">Años de Experiencia en Aliados</div>
             </div>
             <div className="palcco-stat__sep"></div>
             <div className="palcco-stat">
-              <div className="palcco-stat__val">5000</div>
-              <div className="palcco-stat__label">Capacidad de Asistentes</div>
+              <div className="palcco-stat__val" data-value="6200" data-suffix="+">6200+</div>
+              <div className="palcco-stat__label">Eventos Realizados</div>
             </div>
             <div className="palcco-stat__sep"></div>
             <div className="palcco-stat">
-              <div className="palcco-stat__val">35</div>
-              <div className="palcco-stat__label">Salones Flexibles</div>
+              <div className="palcco-stat__val" data-value="15" data-suffix=" Millones">15 Millones</div>
+              <div className="palcco-stat__label">De Visitantes Globales</div>
             </div>
           </div>
         </div>
@@ -113,29 +118,36 @@ export default function PalccoPage() {
         <div className="container">
           <div className="section-head text-center">
             <h2 className="heading-lg">Espacios <span className="text-gradient">Majestuosos</span></h2>
-            <p className="body-md">Adaptables para cualquier tipo de congreso, convención o concierto.</p>
+            <p className="body-md">De 15 hasta 5,000 asistentes simultáneos bajo infraestructura mundial.</p>
           </div>
           
           <div className="palcco-bento">
             <div className="palcco-bento__item palcco-bento__item--large">
-              <img src="/palcco-teatro.png" alt="Teatro Principal" className="palcco-bento__img" />
+              <img src="/palcco-teatro.png" alt="Teatro Moncayo" className="palcco-bento__img" />
               <div className="palcco-bento__content">
-                <h3>Teatro Moncayo</h3>
-                <p>Acústica impecable desarrollada por expertos mundiales y capacidad masiva para los shows de talla internacional más exigentes.</p>
+                <h3>Teatro José Pablo Moncayo</h3>
+                <p>1,963 espectadores. Escenario de 35x20 metros con piso Harlequin y acústica inmersiva incomparable. La joya de la corona para eventos premium.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800" alt="Salones" className="palcco-bento__img" />
+              <img src="https://images.unsplash.com/photo-1543804368-2a784d0df54f?auto=format&fit=crop&q=80&w=800" alt="Sala Consuelo" className="palcco-bento__img" />
               <div className="palcco-bento__content">
-                <h3>Salas de Convenciones</h3>
-                <p>Módulos ajustables con lo último en tecnología audiovisual para conferencias corporativas.</p>
+                <h3>Sala Consuelo Velázquez</h3>
+                <p>399 butacas íntimas. Intimidad escénica ideal para conferencias teatrales de aforo mediano, obras y recitales exclusivos.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800" alt="Exposiciones" className="palcco-bento__img" />
+              <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800" alt="Centro de Convenciones" className="palcco-bento__img" />
               <div className="palcco-bento__content">
-                <h3>Ágora Central</h3>
-                <p>Miles de metros cuadrados a cielo abierto y cerrados para stands, exposiciones y activaciones BTL.</p>
+                <h3>Salas de Exposiciones</h3>
+                <p>899 M2 y 12 salas interconectadas. Ideal para galerías comerciales y grandes muestras empresariales con facilidad de diseño.</p>
+              </div>
+            </div>
+            <div className="palcco-bento__item palcco-bento__item--large" style={{ gridColumn: '1 / -1' }}>
+              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=2000" alt="Foro Bailmex" className="palcco-bento__img" />
+              <div className="palcco-bento__content" style={{ background: 'linear-gradient(90deg, rgba(13,16,23,0.95), transparent)' }}>
+                <h3>Foro BAILMEX y Ágora</h3>
+                <p>5,000 M2 de Velaria acústica e impermeable para experiencias multitudinarias y eventos deportivos imponentes al aire libre sin riesgos ambientales.</p>
               </div>
             </div>
           </div>
@@ -147,7 +159,7 @@ export default function PalccoPage() {
         <div className="container">
           <div className="palcco-cta__box">
             <h2>Hagamos de tu evento una <span className="text-gradient">experiencia inolvidable</span></h2>
-            <p>Contamos con el soporte de Grupo Promomedios para potenciar la difusión de tu conferencia o congreso.</p>
+            <p>Contamos con 9 Foros, Salones y Salas para recibir convenciones de gran capacidad. Contacta hoy mismo a nuestro equipo comercial de Palcco.</p>
             <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary btn--large">
               Solicitar Fechas y Disponibilidad
             </a>

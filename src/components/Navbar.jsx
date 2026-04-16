@@ -80,9 +80,8 @@ export default function Navbar() {
             const isInternal = link.href.startsWith('/') && !link.href.startsWith('http');
             const isAnchor = link.href.startsWith('/#');
 
-            const isNosotros = link.label === 'Nosotros';
             const isEmisoras = link.label === 'Emisoras';
-            const hasSubmenu = isNosotros || isEmisoras;
+            const hasSubmenu = isEmisoras;
             
             let LinkComponent;
 
@@ -132,24 +131,7 @@ export default function Navbar() {
               );
             }
 
-            if (isNosotros) {
-              return (
-                <div key={link.label} className="navbar__dropdown-wrapper">
-                  {LinkComponent}
-                  <div className="navbar__dropdown">
-                     <button className="navbar__dropdown-item" onClick={() => handleAnchorLink('/#about')}>
-                        <span>Grupo Promomedios</span>
-                     </button>
-                     <Link to="/canal-continental" className="navbar__dropdown-item" onClick={handleNavClick}>
-                        <span>Canal Continental</span>
-                     </Link>
-                     <Link to="/palcco" className="navbar__dropdown-item" onClick={handleNavClick}>
-                        <span>PALCCO</span>
-                     </Link>
-                  </div>
-                </div>
-              );
-            }
+
 
             return <div key={link.label}>{LinkComponent}</div>;
           })}
@@ -208,19 +190,7 @@ export default function Navbar() {
                     ))}
                   </div>
                 )}
-                {link.label === 'Nosotros' && (
-                  <div className="navbar__mobile-dropdown">
-                     <button className="navbar__mobile-dropdown-item" onClick={() => { setMenuOpen(false); handleAnchorLink('/#about'); }} style={{ textAlign: 'left' }}>
-                        <span>Grupo Promomedios</span>
-                     </button>
-                     <Link to="/canal-continental" className="navbar__mobile-dropdown-item" onClick={handleNavClick}>
-                        <span>Canal Continental</span>
-                     </Link>
-                     <Link to="/palcco" className="navbar__mobile-dropdown-item" onClick={handleNavClick}>
-                        <span>PALCCO</span>
-                     </Link>
-                  </div>
-                )}
+
               </motion.div>
             ))}
             <a href={siteConfig.whatsapp} className="btn btn--primary" style={{ marginTop: '1rem', width: '100%' }}>

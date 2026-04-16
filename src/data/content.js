@@ -9,8 +9,8 @@ export const siteConfig = {
   tagline: 'Espacios publicitarios en radio',
   phone: '+52 55-5250-8990',
   email: 'ventas@promosat.com',
-  whatsapp: 'https://wa.link/3vkdbm',
-  whatsappFloat: 'https://wa.link/9hrbtv',
+  whatsapp: 'https://wa.me/525552508990',
+  whatsappFloat: 'https://wa.me/525552508990',
   logo: 'https://static.wixstatic.com/media/45119e_dc54ee4be0d24a10aa39ca8da607c80c~mv2.png/v1/crop/x_153,y_98,w_523,h_473/fill/w_200,h_180,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-01.png',
   logoWhite: 'https://static.wixstatic.com/media/45119e_3c68ef573a2748c88e4cc8760aaee02f~mv2.png/v1/crop/x_105,y_75,w_607,h_687/fill/w_200,h_226,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-02.png',
   social: {
@@ -22,6 +22,8 @@ export const siteConfig = {
 export const navLinks = [
   { label: 'Nosotros', href: '/#about' },
   { label: 'Emisoras', href: '/#cobertura' },
+  { label: 'Canal Continental', href: '/canal-continental' },
+  { label: 'PALCCO', href: '/palcco' },
   { label: 'Promedia', href: '/promedia' },
   { label: 'Contacto', href: '/contacto' },
 ];

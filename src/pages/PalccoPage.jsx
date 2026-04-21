@@ -67,7 +67,7 @@ export default function PalccoPage() {
       {/* ── Hero ── */}
       <section className="palcco-hero">
         <div className="palcco-hero__bg">
-          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000" alt="Palcco Auditorio" />
+          <img src="/images/palcco-hero.jpg" alt="PALCCO Arquitectura" />
           <div className="palcco-hero__overlay"></div>
         </div>
         <div className="container">
@@ -96,7 +96,7 @@ export default function PalccoPage() {
         <div className="container">
           <div className="palcco-stats-wrapper">
             <div className="palcco-stat">
-              <div className="palcco-stat__val" data-value="35" data-suffix="">35</div>
+              <div className="palcco-stat__val" data-value="55" data-suffix="">55</div>
               <div className="palcco-stat__label">Años de Experiencia en Aliados</div>
             </div>
             <div className="palcco-stat__sep"></div>

@@ -45,7 +45,7 @@
 
 .palcco-hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
   color: #fff;
   line-height: 1.05;
@@ -54,11 +54,11 @@
 }
 
 .palcco-hero__desc {
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
   color: var(--color-text-secondary);
   line-height: 1.6;
-  max-width: 600px;
-  margin-bottom: 2.5rem;
+  max-width: 550px;
+  margin-bottom: 2rem;
 }
 
 .palcco-hero__actions {
@@ -71,7 +71,7 @@
 .palcco-stats-section {
   position: relative;
   z-index: 10;
-  margin-top: -60px;
+  margin-top: -40px;
 }
 
 .palcco-stats-wrapper {
@@ -97,7 +97,7 @@
 
 .palcco-stat__val {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
   color: #fff;
   line-height: 1;
@@ -210,13 +210,34 @@
 }
 
 @media (max-width: 900px) {
+  .palcco-hero {
+    min-height: 80vh;
+    padding-top: 100px;
+  }
+  .palcco-hero__content {
+    max-width: 100%;
+  }
+  .palcco-hero__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  .palcco-hero__desc {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+  .palcco-stats-section {
+    margin-top: -20px;
+  }
   .palcco-stats-wrapper {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+    padding: 2rem;
   }
   .palcco-stat__sep {
     width: 60px;
     height: 1px;
+  }
+  .palcco-stat__val {
+    font-size: 2rem;
   }
   .palcco-bento {
     grid-template-columns: 1fr;

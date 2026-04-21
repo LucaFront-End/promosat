@@ -351,7 +351,7 @@ export default function CoverageMap() {
                             Ver Emisora
                           </Link>
                         ) : (
-                          <a href="https://wa.me/523310936696" target="_blank" rel="noopener noreferrer" className="coverage-card__action coverage-card__action--primary" onClick={e => e.stopPropagation()}>
+                          <a href={`https://wa.me/525552508990?text=${encodeURIComponent(`SW- Hola quisiera información para publicidad en Radio en ${station.name}`)}`} target="_blank" rel="noopener noreferrer" className="coverage-card__action coverage-card__action--primary" onClick={e => e.stopPropagation()}>
                             Cotizar Espacio
                           </a>
                         )}

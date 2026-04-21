@@ -20,7 +20,6 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { label: 'Nosotros', href: '/#about' },
   { label: 'Emisoras', href: '/#cobertura' },
   { label: 'Canal Continental', href: '/canal-continental' },
   { label: 'PALCCO', href: '/palcco' },
@@ -29,30 +28,30 @@ export const navLinks = [
 ];
 
 export const heroContent = {
-  tagline: 'Grupo Promomedios',
+  tagline: 'Promosat de México',
   title: ['EL GRUPO', '#1 EN RADIO', 'DE MÉXICO'],
-  subtitle: 'Con más de 52 años en medios de comunicación, somos el aliado estratégico con la mayor cobertura de radio a nivel nacional.',
+  subtitle: 'Con más de 55 años en medios de comunicación, somos el aliado estratégico con la mayor cobertura de radio a nivel nacional.',
   ctaPrimary: 'Cotizar Ahora',
   ctaSecondary: 'Conocer más',
   stats: [
-    { value: '52+', label: 'Años de experiencia' },
+    { value: '55+', label: 'Años de experiencia' },
     { value: '70+', label: 'Emisoras en todo México' },
-    { value: '3', label: 'Empresas del grupo' },
+    { value: '4', label: 'Empresas del grupo' },
     { value: '25+', label: 'Estados con cobertura' },
   ],
   bgImage: 'https://static.wixstatic.com/media/45119e_11312c5dce604bb98bf39accf9c703a0f000.jpg/v1/fill/w_1920,h_1080,al_c,q_85,usm_0.33_1.00_0.00,enc_avif,quality_auto/45119e_11312c5dce604bb98bf39accf9c703a0f000.jpg',
 };
 
 export const aboutContent = {
-  heading: 'Una Empresa de',
-  highlight: 'Grupo Promomedios',
-  description: 'Con más de 35 años como uno de los grupos líderes en la industria de la Radio local a nivel nacional, reafirmamos nuestro compromiso con nuestros clientes ofreciendo las mejores emisoras y programación para sus Anuncios en Radio.',
+  heading: 'NOSOTROS',
+  highlight: 'Promosat',
+  description: 'Con más de 55 años como uno de los grupos líderes en la industria de la Radio local a nivel nacional, reafirmamos nuestro compromiso con nuestros clientes ofreciendo las mejores emisoras y programación para sus Anuncios en Radio.',
   companies: [
     {
-      name: 'Grupo Promomedios',
-      description: 'Con 52 años en medios de comunicación, aliado estratégico con instituciones y líderes con gran potencial en Branding.',
-      logo: 'https://static.wixstatic.com/media/45119e_e4fafee36852408f9e3ee1e6dec03d8d~mv2.png/v1/crop/x_84,y_0,w_3085,h_2540/fill/w_200,h_165,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logotipo_GRUPO%20PROMOMEDIOS.png',
-      href: null // Representa todo el grupo, no hay página separada que no sea Home o Contacto
+      name: 'Promosat',
+      description: 'Con 55 años en medios de comunicación, aliado estratégico con instituciones y líderes con gran potencial en Branding.',
+      logo: 'https://static.wixstatic.com/media/45119e_dc54ee4be0d24a10aa39ca8da607c80c~mv2.png/v1/crop/x_153,y_98,w_523,h_473/fill/w_200,h_180,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-01.png',
+      href: null
     },
     {
       name: 'Canal Continental',
@@ -66,6 +65,12 @@ export const aboutContent = {
       logo: 'https://static.wixstatic.com/media/45119e_6177997cea0642aeba05ad8aa1ac4bb9~mv2.png/v1/crop/x_0,y_0,w_1000,h_467/fill/w_200,h_94,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PALCCO_ColorN.png',
       href: '/palcco'
     },
+    {
+      name: 'Promedia',
+      description: 'Profesionales en contenidos para redes sociales. Podcasts, series, conciertos y estrategia creativa para potenciar tu marca.',
+      logo: 'https://static.wixstatic.com/media/45119e_dc54ee4be0d24a10aa39ca8da607c80c~mv2.png/v1/crop/x_153,y_98,w_523,h_473/fill/w_200,h_180,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-01.png',
+      href: '/promedia'
+    },
   ],
 };
 
@@ -73,8 +78,8 @@ export const marqueeItems = [
   'Publicidad en Radio',
   'Cobertura Nacional',
   '70+ Emisoras',
-  '52 Años de Experiencia',
-  'Grupo Promomedios',
+  '55 Años de Experiencia',
+  'Promosat de México',
   'PALCCO Guadalajara',
   'Canal Continental',
   'Branding & Audiencia',
@@ -99,7 +104,7 @@ export const advantages = [
   {
     icon: '👥',
     title: 'Equipo Profesional',
-    description: 'Nuestro equipo además de estar altamente capacitado cuenta con más de 30 años de experiencia en publicidad de Radio.',
+    description: 'Nuestro equipo además de estar altamente capacitado cuenta con más de 55 años de experiencia en publicidad de Radio.',
   },
   {
     icon: '💰',
@@ -369,6 +374,12 @@ export const promediaContent = {
       target: 'Hombres y Mujeres de 18 a 54',
       description: 'La pareja consentida de la radio en Guadalajara dispuesta a conquistar el mundo con su Podcast de Ellas vs Ellos. Escuchan comentarios del auditorio acerca de temas candentes de situaciones de pareja y discuten si son las Mujeres o los Hombres quienes mejor resuelven sus diferencias.',
       stats: { followers: '370K', youtube: '10K vistas', instagram: '30K vistas' },
+      videos: [
+        'https://www.youtube.com/shorts/hkU-noejFsY',
+        'https://www.youtube.com/shorts/2FH3q-Bq7EA',
+        'https://www.youtube.com/shorts/IV27UnzA3xY',
+        'https://www.youtube.com/shorts/Un0XaT0Zugs',
+      ],
     },
     {
       name: '+Bonitas que Canijas',
@@ -377,6 +388,12 @@ export const promediaContent = {
       target: 'Mujeres de 18 a 54',
       description: 'Son Mamás Jóvenes que viven lo que expresan en sus contenidos, con un lenguaje fresco y sin poses, que exponen sus dudas a los invitados y comparten sus experiencias de una manera sencilla, sincera y honesta.',
       stats: { followers: '130K+', instagram: '170K vistas', tiktok: '200K vistas' },
+      videos: [
+        'https://www.youtube.com/shorts/oyHSWDxAfZk',
+        'https://www.youtube.com/shorts/2Ol6_VNDe9Q',
+        'https://www.youtube.com/shorts/pTuhw-CvnZo',
+        'https://www.youtube.com/shorts/ynqx6MxjWYA',
+      ],
     },
     {
       name: 'Bolillito pa\'l Susto',
@@ -385,6 +402,12 @@ export const promediaContent = {
       target: 'Hombres y Mujeres de 18 a 54',
       description: 'Un Podcast donde se mezcla lo paranormal y la comedia en una dosis perfecta. Historias reales enviadas por la audiencia, leyendas urbanas y anécdotas de miedo, contadas con el toque único de los conductores que convierten el terror en risas.',
       stats: { followers: '69K+', youtube: '120K vistas', instagram: '1M+ vistas' },
+      videos: [
+        'https://www.youtube.com/shorts/uxEuWO8jhSk',
+        'https://www.youtube.com/shorts/uompiIBc62E',
+        'https://www.youtube.com/shorts/zvv6Jf3Q7YQ',
+        'https://www.youtube.com/shorts/akF3eou_GhA',
+      ],
     },
     {
       name: 'La Banda F.C.',
@@ -393,6 +416,12 @@ export const promediaContent = {
       target: 'Hombres y Mujeres de 15 a 54',
       description: 'Una comunidad digital para amantes del fútbol y otros deportes. Informamos, comunicamos y divertimos en un formato de videos cortos con: Historia del fútbol, datos curiosos, actualidades y mucho más.',
       stats: { followers: '4.5K+', youtube: '2M+ vistas', tiktok: '2.5M vistas' },
+      videos: [
+        'https://www.youtube.com/shorts/Bo1uGZofqmw',
+        'https://www.youtube.com/shorts/hYd3txtMGWY',
+        'https://www.youtube.com/shorts/diJ7Rmyp7w4',
+        'https://www.youtube.com/shorts/plswLazmgZU',
+      ],
     },
   ],
 };

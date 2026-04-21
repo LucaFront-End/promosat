@@ -121,7 +121,7 @@ export default function CanalContinentalPage() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '2rem', padding: '3rem', background: 'rgba(255,255,255,0.03)', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
             <div className="stat-item text-center">
-              <h3 className="heading-md text-gradient" style={{ marginBottom: '0.5rem' }}>35+</h3>
+              <h3 className="heading-md text-gradient" style={{ marginBottom: '0.5rem' }}>55+</h3>
               <p>Años de Experiencia</p>
             </div>
             <div className="stat-item text-center">

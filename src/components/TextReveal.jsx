@@ -5,7 +5,7 @@ import './TextReveal.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const text = "No somos solo una red de emisoras. Somos el canal directo entre tu marca y millones de mexicanos todos los días. Con más de 52 años dominando el espectro radiofónico, conectamos a través del sonido, la emoción y la inmediatez.";
+const text = "No somos solo una red de emisoras. Somos el canal directo entre tu marca y millones de mexicanos todos los días. Con más de 55 años dominando el espectro radiofónico, conectamos a través del sonido, la emoción y la inmediatez.";
 
 export default function TextReveal() {
   const containerRef = useRef(null);

@@ -24,7 +24,7 @@ export default function Footer() {
               <span className="footer__brand-name">Promosat</span>
             </div>
             <p className="body-sm footer__brand-desc">
-              Con más de 35 años como uno de los grupos líderes en la industria de la Radio local a nivel nacional.
+              Con más de 55 años como uno de los grupos líderes en la industria de la Radio local a nivel nacional.
             </p>
             <div className="footer__social">
               <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="LinkedIn">

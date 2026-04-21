@@ -6,6 +6,12 @@ a, button, [role="button"], input, textarea, select {
   cursor: none !important;
 }
 
+/* Restore cursor inside modals */
+.pm-modal-overlay,
+.pm-modal-overlay * {
+  cursor: auto !important;
+}
+
 .custom-cursor {
   position: fixed;
   top: 0;

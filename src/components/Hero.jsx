@@ -88,7 +88,7 @@ export default function Hero() {
       {/* ── Layer 4: Video Caption ── */}
       <div ref={playerCaptionRef} className="hero-cinematic__player-caption">
         <span className="tag tag--accent"><span className="tag__dot" /> REEL PROMOCIONAL</span>
-        <p>Promosat de México — Grupo Promomedios</p>
+        <p>Promosat de México — 55 Años de Experiencia</p>
       </div>
 
       {/* ── Layer 5: Floating Contact CTA (appears over video at progress > 0.78) ── */}

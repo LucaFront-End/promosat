@@ -41,7 +41,7 @@ export default function StationPage() {
   }
 
   const videoSrc = STATION_VIDEOS[station.videoId];
-  const waMessage = encodeURIComponent(`Hola, me interesa cotizar publicidad en ${station.name}`);
+  const waMessage = encodeURIComponent(`SW- Hola quisiera información para publicidad en Radio en ${station.name}`);
   const waLink = `https://wa.me/525552508990?text=${waMessage}`;
 
   return (

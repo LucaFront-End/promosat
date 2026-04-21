@@ -207,7 +207,7 @@ export default function StationsShowcase() {
                 {/* CTAs */}
                 <div className="stack-card__actions">
                   <a
-                    href={`https://wa.me/525552508990?text=${encodeURIComponent(`Hola, me interesa cotizar publicidad en ${station.name}`)}`}
+                    href={`https://wa.me/525552508990?text=${encodeURIComponent(`SW- Hola quisiera información para publicidad en Radio en ${station.name}`)}`}
                     className="stack-card__cta"
                     target="_blank"
                     rel="noopener noreferrer"

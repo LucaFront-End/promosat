@@ -137,7 +137,7 @@ export const stationsGDL = [
     schedule: 'Transmisión 24/7 · Programas en vivo de 6:00 AM a 10:00 PM',
     audience: '500,000+ oyentes mensuales',
     accentColor: '#D03B44',
-    videoId: null,
+    videoId: 'fiesta-mexicana',
   },
   {
     name: 'Zona Tres',

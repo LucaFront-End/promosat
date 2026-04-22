@@ -27,4 +27,5 @@ export const STATION_VIDEOS = {
   leon: getVideoUrl('PROMO_LEON.mp4'),
   'zona-tres': getVideoUrl('Video_IDENTIDAD_ZONA_TRES.mp4'),
   'radio-mujer': getVideoUrl('Video_Radio_Mujer.mp4'),
+  'fiesta-mexicana': getVideoUrl('fiesta_mexicana.mp4'),
 };

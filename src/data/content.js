@@ -68,7 +68,7 @@ export const aboutContent = {
     {
       name: 'Promedia',
       description: 'Profesionales en contenidos para redes sociales. Podcasts, series, conciertos y estrategia creativa para potenciar tu marca.',
-      logo: 'https://static.wixstatic.com/media/45119e_dc54ee4be0d24a10aa39ca8da607c80c~mv2.png/v1/crop/x_153,y_98,w_523,h_473/fill/w_200,h_180,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-01.png',
+      logo: '/images/promedia/logo.png',
       href: '/promedia'
     },
   ],

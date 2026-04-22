@@ -81,14 +81,7 @@ export default function CanalContinentalPage() {
     return () => ctx.revert();
   }, []);
 
-  const images = [
-    '/images/canal-continental/img1.jpeg',
-    '/images/canal-continental/img2.jpeg',
-    '/images/canal-continental/img4.jpeg',
-    '/images/canal-continental/img5.jpeg',
-    '/images/canal-continental/img6.jpeg',
-    '/images/canal-continental/img7.jpeg'
-  ];
+  const images = Array.from({ length: 12 }, (_, i) => `/images/canal-continental/gallery_${i + 1}.jpg`);
 
   return (
     <div className="canal-page" ref={pageRef} id="canal-page">

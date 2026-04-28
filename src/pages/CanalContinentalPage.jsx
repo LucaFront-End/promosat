@@ -192,7 +192,7 @@ export default function CanalContinentalPage() {
 
       {/* ── Parallax Divider ── */}
       <section className="canal-parallax">
-        <img src="/images/canal-continental/img1.jpeg" alt="Trailer en evento" className="canal-parallax__img" />
+        <img src="/images/canal-continental/gallery_1.jpg" alt="Trailer en evento" className="canal-parallax__img" />
         <div className="canal-parallax__overlay">
           <h2>El evento que imaginas,<br/>en el <span>Lugar que desees</span></h2>
         </div>

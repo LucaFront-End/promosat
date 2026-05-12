@@ -212,9 +212,9 @@ export default function StatHighlight() {
       <div className="stat-highlight__glow" />
       <canvas ref={canvasRef} className="stat-highlight__canvas" />
       <div className="stat-highlight__content">
-        <span className="stat-highlight__label">DATO CLAVE</span>
+        <span className="stat-highlight__label">RATING EN GDL</span>
         <p className="stat-highlight__desc">
-          es el porcentaje que aumenta el <strong>Awareness</strong> en anuncios cuando se combinan con publicidad en <strong>Radio</strong>.
+          {statHighlight.description}
         </p>
       </div>
     </section>

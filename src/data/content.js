@@ -45,11 +45,11 @@ export const heroContent = {
 export const aboutContent = {
   heading: 'NOSOTROS',
   highlight: 'Promosat',
-  description: 'Con más de 55 años como uno de los grupos líderes en la industria de la Radio local a nivel nacional, reafirmamos nuestro compromiso con nuestros clientes ofreciendo las mejores emisoras y programación para sus Anuncios en Radio.',
+  description: 'Con más de 55 años como uno de los grupos líderes de la industria radiofónica en México, reafirmamos nuestro compromiso con nuestros clientes, ofreciendo las mejores audiencias para potenciar sus marcas.',
   companies: [
     {
-      name: 'Promosat',
-      description: 'Con 55 años en medios de comunicación, aliado estratégico con instituciones y líderes con gran potencial en Branding.',
+      name: 'Promosat de México',
+      description: 'Somos una empresa líder, con nuestra oferta comercial en emisoras de radio para todo el país, con más de 55 años, conectando la comunicación de nuestras marcas con nuestras audiencias.',
       logo: 'https://static.wixstatic.com/media/45119e_dc54ee4be0d24a10aa39ca8da607c80c~mv2.png/v1/crop/x_153,y_98,w_523,h_473/fill/w_200,h_180,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-01.png',
       href: null
     },
@@ -261,9 +261,9 @@ export const stationVideos = {
 };
 
 export const statHighlight = {
-  value: 35,
-  suffix: '%',
-  description: 'es el porcentaje que aumenta el Awareness en anuncios cuando se combinan con anuncios en Radio.',
+  value: 'Top',
+  suffix: ' 5',
+  description: 'Somos líderes en rating en Guadalajara, posicionándonos consistentemente en el Top 5 de las emisoras más escuchadas de la zona metropolitana.',
 };
 
 export const partnerLogos = [

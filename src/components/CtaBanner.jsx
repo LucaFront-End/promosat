@@ -35,8 +35,8 @@ export default function CtaBanner() {
           Conecta con millones de oyentes a nivel nacional. Nuestro equipo de expertos te ayudará a crear la estrategia perfecta.
         </p>
         <div className="cta-banner__actions">
-          <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-            Cotizar Ahora
+          <a href="/contacto" className="btn btn--primary">
+            Contactar
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href={`tel:${siteConfig.phone}`} className="btn btn--outline">

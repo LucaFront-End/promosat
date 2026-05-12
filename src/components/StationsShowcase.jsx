@@ -206,15 +206,13 @@ export default function StationsShowcase() {
 
                 {/* CTAs */}
                 <div className="stack-card__actions">
-                  <a
-                    href={`https://wa.me/525552508990?text=${encodeURIComponent(`SW- Hola quisiera información para publicidad en Radio en ${station.name}`)}`}
+                  <Link
+                    to="/contacto"
                     className="stack-card__cta"
-                    target="_blank"
-                    rel="noopener noreferrer"
                   >
-                    <span>Cotizar Espacio</span>
+                    <span>Contactar</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
+                  </Link>
                   <Link
                     to={`/emisora/${station.slug}`}
                     className="stack-card__link"

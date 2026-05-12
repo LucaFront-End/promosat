@@ -80,8 +80,8 @@ export default function PalccoPage() {
               Uno de los complejos más emblemáticos de la Zona Metropolitana de Guadalajara. El entorno tecnológicamente avanzado perfecto con teatros, ágoras y centros de negocios que complementan la oferta de tu próximo gran evento.
             </p>
             <div className="palcco-hero__actions">
-              <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-                Cotizar Evento
+              <a href="/contacto" className="btn btn--primary">
+                Contactar
               </a>
               <a href="#espacios" className="btn btn--outline">
                 Ver Espacios

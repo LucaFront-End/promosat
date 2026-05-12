@@ -97,8 +97,8 @@ export default function CanalContinentalPage() {
               <p className="canal-hero__desc">
                 La herramienta ideal para espectáculos masivos. <strong>Nuestra imponente unidad móvil se despliega para convertirse en un escenario completo</strong>, capaz de convocar y concentrar cómodamente a grupos de entre 1,000 a 20,000 personas en cualquier parte del país.
               </p>
-              <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-                Reservar Fechas
+              <a href="/contacto" className="btn btn--primary">
+                Contactar
               </a>
             </div>
             <div className="canal-hero__visual">

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../data/content';
+import PalccoCarousel from '../components/PalccoCarousel';
 import './PalccoPage.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -123,28 +124,86 @@ export default function PalccoPage() {
           
           <div className="palcco-bento">
             <div className="palcco-bento__item palcco-bento__item--large">
-              <img src="/images/palcco/teatro_moncayo.jpg" alt="Teatro Moncayo" className="palcco-bento__img" />
+              <PalccoCarousel
+                images={[
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-27.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-26.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-22.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-17.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-32.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-6.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-4.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-30.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-35.webp',
+                  '/images/palcco/teatro-jose/teatro-moncayo_galeria-7.webp',
+                  '/images/palcco/teatro-jose/sala-consuelo-velazquez_banner-1.webp',
+                  '/images/palcco/teatro-jose/sala-consuelo-velazquez_banner-3.webp',
+                ]}
+                alt="Teatro José Pablo Moncayo"
+              />
               <div className="palcco-bento__content">
                 <h3>Teatro José Pablo Moncayo</h3>
                 <p>1,963 espectadores. Escenario de 35x20 metros con piso Harlequin y acústica inmersiva incomparable. La joya de la corona para eventos premium.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="/images/palcco/sala_consuelo.png" alt="Sala Consuelo" className="palcco-bento__img" />
+              <PalccoCarousel
+                images={[
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-1-2.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-17.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-21.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-22.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-24.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-25.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-26.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-28.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-6.webp',
+                  '/images/palcco/sala-consuelo/sala-consuelo-velazquez_galeria-7.webp',
+                ]}
+                alt="Sala Consuelo Velázquez"
+              />
               <div className="palcco-bento__content">
                 <h3>Sala Consuelo Velázquez</h3>
                 <p>399 butacas íntimas. Intimidad escénica ideal para conferencias teatrales de aforo mediano, obras y recitales exclusivos.</p>
               </div>
             </div>
             <div className="palcco-bento__item">
-              <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800" alt="Centro de Convenciones" className="palcco-bento__img" />
+              <PalccoCarousel
+                images={[
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-1-2.jpg',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-2.jpg',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-3.jpg',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-6.jpg',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-7.jpg',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-10.webp',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-11.webp',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-12.webp',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-13.webp',
+                  '/images/palcco/sala-exposiciones/exposiciones_MET-2-2.jpg',
+                ]}
+                alt="Salas de Exposiciones"
+              />
               <div className="palcco-bento__content">
                 <h3>Salas de Exposiciones</h3>
                 <p>899 M2 y 12 salas interconectadas. Ideal para galerías comerciales y grandes muestras empresariales con facilidad de diseño.</p>
               </div>
             </div>
             <div className="palcco-bento__item palcco-bento__item--large" style={{ gridColumn: '1 / -1' }}>
-              <img src="/images/palcco/foro_bailmex.jpg" alt="Foro Bailmex" className="palcco-bento__img" />
+              <PalccoCarousel
+                images={[
+                  '/images/palcco/foro-bailmex/foro-agora_banner-3.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-2.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-11.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-13.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-14.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-18.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-23.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-2-2.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-3-2.webp',
+                  '/images/palcco/foro-bailmex/foro-agora_galeria-8.webp',
+                ]}
+                alt="Foro BAILMEX y Ágora"
+              />
               <div className="palcco-bento__content" style={{ background: 'linear-gradient(90deg, rgba(13,16,23,0.95), transparent)' }}>
                 <h3>Foro BAILMEX y Ágora</h3>
                 <p>5,000 M2 de Velaria acústica e impermeable para experiencias multitudinarias y eventos deportivos imponentes al aire libre sin riesgos ambientales.</p>
@@ -160,8 +219,8 @@ export default function PalccoPage() {
           <div className="palcco-cta__box">
             <h2>Hagamos de tu evento una <span className="text-gradient">experiencia inolvidable</span></h2>
             <p>Contamos con 9 Foros, Salones y Salas para recibir convenciones de gran capacidad. Contacta hoy mismo a nuestro equipo comercial de Palcco.</p>
-            <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary btn--large">
-              Solicitar Fechas y Disponibilidad
+            <a href="/contacto" className="btn btn--primary btn--large">
+              Contactar
             </a>
           </div>
         </div>

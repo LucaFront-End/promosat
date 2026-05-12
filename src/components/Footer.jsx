@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="footer__col footer__col--brand">
             <div className="footer__brand">
               <img src={siteConfig.logo} alt={siteConfig.name} className="footer__logo" />
-              <span className="footer__brand-name">Promosat</span>
+              <span className="footer__brand-name">Promosat de México</span>
             </div>
             <p className="body-sm footer__brand-desc">
               Con más de 55 años como uno de los grupos líderes en la industria de la Radio local a nivel nacional.

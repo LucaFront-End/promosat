@@ -4,9 +4,9 @@ import PinnedShowcase from '../components/PinnedShowcase';
 import AdvantagesPremium from '../components/AdvantagesPremium';
 import StationsShowcase from '../components/StationsShowcase';
 import CoverageMap from '../components/CoverageMap';
-import StatHighlight from '../components/StatHighlight';
+import RatingLeaderboard from '../components/RatingLeaderboard';
 import PartnersMarquee from '../components/PartnersMarquee';
-import BlogPreview from '../components/BlogPreview';
+
 import CtaBanner from '../components/CtaBanner';
 import TextReveal from '../components/TextReveal';
 import Preloader from '../components/Preloader';
@@ -24,9 +24,9 @@ export default function HomePage() {
       <AdvantagesPremium />
       <StationsShowcase />
       <CoverageMap />
-      <StatHighlight />
+      <RatingLeaderboard />
       <PartnersMarquee />
-      <BlogPreview />
+
       <ContactSection />
       <CtaBanner />
     </>

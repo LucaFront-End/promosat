@@ -39,7 +39,7 @@ export default function PinnedShowcase() {
           <div className="pinned-showcase__content">
             <span className="tag tag--accent"><span className="tag__dot" /> NOSOTROS</span>
             <h2 className="heading-xl pinned-showcase__title">
-              Una empresa de <span className="text-accent">Grupo Promomedios</span>
+              <span className="text-accent">Grupo Promomedios</span>
             </h2>
             <p className="body-lg" style={{ color: 'var(--color-text-secondary)', maxWidth: '420px', lineHeight: 1.7 }}>
               {aboutContent.description}
@@ -87,7 +87,7 @@ function ShowcaseCard({ company, index }) {
   return (
     <div className="showcase-card">
       <div className="showcase-card__number">0{index + 1}</div>
-      <div className="showcase-card__img-wrap">
+      <div className={`showcase-card__img-wrap ${index === 0 ? 'showcase-card__img-wrap--dark' : ''}`}>
         <img src={company.logo} alt={company.name} className="showcase-card__logo" />
       </div>
       <h3 className="heading-md" style={{ marginTop: '1.5rem', marginBottom: '0.75rem' }}>{company.name}</h3>

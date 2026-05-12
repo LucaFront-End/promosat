@@ -17,11 +17,11 @@ const allStations = [
   { name: 'Fiesta Mexicana', dial: '92.3 FM', city: 'Guadalajara', state: 'Jalisco', region: 'Occidente', genre: 'Regional Mexicana', slug: 'fiesta-mexicana' },
   { name: 'Zona Tres', dial: '91.5 FM', city: 'Guadalajara', state: 'Jalisco', region: 'Occidente', genre: 'Pop / Top 40', slug: 'zona-tres' },
   { name: 'Radio Mujer', dial: '92.7 FM', city: 'Guadalajara', state: 'Jalisco', region: 'Occidente', genre: 'Adulto Contemporáneo', slug: 'radio-mujer' },
-  { name: 'Milenio', dial: '105.1 FM', city: 'Guadalajara', state: 'Jalisco', region: 'Occidente', genre: 'Bella Música', slug: 'milenio' },
+  { name: 'Milenio Bella Música', dial: '105.1 FM', city: 'Guadalajara', state: 'Jalisco', region: 'Occidente', genre: 'Bella Música', slug: 'milenio' },
 
   // ── GUANAJUATO (León / Bajío) ──
   { name: 'La Grande', dial: '95.5 FM', city: 'León', state: 'Guanajuato', region: 'Bajío', genre: 'Grupera / Regional', slug: 'la-grande' },
-  { name: 'La Prima', dial: '105.1 FM', city: 'León', state: 'Guanajuato', region: 'Bajío', genre: 'Ranchera', slug: 'la-prima' },
+  { name: 'La Rancherita', dial: '105.1 FM', city: 'León', state: 'Guanajuato', region: 'Bajío', genre: 'Ranchera', slug: 'la-rancherita' },
   { name: 'Blu FM', dial: '92.3 FM', city: 'León', state: 'Guanajuato', region: 'Bajío', genre: 'Pop / Urbano', slug: 'blu-fm' },
   { name: 'Ultra', dial: '98.3 FM', city: 'León', state: 'Guanajuato', region: 'Bajío', genre: 'Rock / Alternativo', slug: 'ultra' },
 

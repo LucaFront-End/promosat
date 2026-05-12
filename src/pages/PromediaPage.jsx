@@ -258,8 +258,8 @@ export default function PromediaPage() {
                 <h3>¿Listo para crear algo increíble?</h3>
                 <p>{promediaContent.services[9]}</p>
               </div>
-              <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-                Hablemos →
+              <a href="/contacto" className="btn btn--primary">
+                Contactar →
               </a>
             </div>
           </div>
@@ -412,8 +412,8 @@ export default function PromediaPage() {
               Conecta con tu audiencia a través del poder del podcasting y la producción de audio profesional.
             </p>
             <div className="pm-cta__actions">
-              <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn--primary" style={{ padding: '1.2rem 3rem', fontSize: '1.05rem' }}>
-                Empezar Proyecto
+              <a href="/contacto" className="btn btn--primary" style={{ padding: '1.2rem 3rem', fontSize: '1.05rem' }}>
+                Contactar
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
               <a href={`mailto:${siteConfig.email}`} className="btn btn--outline" style={{ padding: '1.2rem 3rem', fontSize: '1.05rem' }}>

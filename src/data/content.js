@@ -48,9 +48,9 @@ export const aboutContent = {
   description: 'Con más de 55 años como uno de los grupos líderes de la industria radiofónica en México, reafirmamos nuestro compromiso con nuestros clientes, ofreciendo las mejores audiencias para potenciar sus marcas.',
   companies: [
     {
-      name: 'Promosat de México',
+      name: 'Promosat Radio',
       description: 'Somos una empresa líder, con nuestra oferta comercial en emisoras de radio para todo el país, con más de 55 años, conectando la comunicación de nuestras marcas con nuestras audiencias.',
-      logo: 'https://static.wixstatic.com/media/45119e_dc54ee4be0d24a10aa39ca8da607c80c~mv2.png/v1/crop/x_153,y_98,w_523,h_473/fill/w_200,h_180,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-01.png',
+      logo: 'https://static.wixstatic.com/media/45119e_3c68ef573a2748c88e4cc8760aaee02f~mv2.png/v1/crop/x_105,y_75,w_607,h_687/fill/w_200,h_226,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-02.png',
       href: null
     },
     {
@@ -172,9 +172,9 @@ export const stationsGDL = [
     videoId: 'radio-mujer',
   },
   {
-    name: 'Milenio',
+    name: 'Milenio Bella Música',
     slug: 'milenio',
-    freq: 'XHBIO-FM',
+    freq: 'XHMBM-FM',
     dial: '105.1 FM',
     city: 'Guadalajara, Jalisco',
     logo: 'https://static.wixstatic.com/media/45119e_9975ee270a914e679f551fca4b0217d9~mv2.png/v1/fill/w_160,h_160,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Millenium%20contorno.png',
@@ -204,8 +204,8 @@ export const stationsGDL = [
     videoId: 'leon',
   },
   {
-    name: 'La Prima',
-    slug: 'la-prima',
+    name: 'La Rancherita',
+    slug: 'la-rancherita',
     freq: 'XHLEO-FM',
     dial: '105.1 FM',
     city: 'León, Guanajuato',
@@ -213,7 +213,7 @@ export const stationsGDL = [
     tuneinUrl: 'https://tunein.com/radio/LA-RANCHERITA-1051-s350001/',
     tuneinEmbed: 'https://tunein.com/embed/player/s350001/',
     genre: 'Ranchera / Regional Mexicana',
-    description: 'La estación ranchera del corazón del Bajío. La Prima trae lo mejor de la música ranchera, norteña y de banda con la calidez y autenticidad que caracteriza a la región de Guanajuato. Tu compañera fiel todo el día.',
+    description: 'La estación ranchera del corazón del Bajío. La Rancherita trae lo mejor de la música ranchera, norteña y de banda con la calidez y autenticidad que caracteriza a la región de Guanajuato. Tu compañera fiel todo el día.',
     schedule: 'Transmisión 24/7 · Música ranchera las 24 horas',
     audience: '250,000+ oyentes mensuales',
     accentColor: '#F39C12',
@@ -260,10 +260,20 @@ export const stationVideos = {
   'radio-mujer': '/videos/Video_Radio_Mujer.mp4',
 };
 
-export const statHighlight = {
-  value: 'Top',
-  suffix: ' 5',
-  description: 'Somos líderes en rating en Guadalajara, posicionándonos consistentemente en el Top 5 de las emisoras más escuchadas de la zona metropolitana.',
+/* ── Rating Ranking (CMS-ready: swap this export for a fetch call) ── */
+export const ratingRanking = {
+  month: 'Mayo',
+  year: 2026,
+  market: 'Guadalajara',
+  headline: 'Top 5 en Rating',
+  subtitle: 'Líderes en la Zona Metropolitana de Guadalajara',
+  stations: [
+    { rank: 1, name: 'Radio Mujer',      siglas: 'XHEAAA', banda: 'FM', rating: 0.529, isOwn: true  },
+    { rank: 2, name: 'Zona Tres',         siglas: 'XHGEO',  banda: 'FM', rating: 0.45,  isOwn: true  },
+    { rank: 3, name: 'Globo 98.7',        siglas: 'XHLC',   banda: 'FM', rating: 0.437, isOwn: false },
+    { rank: 4, name: 'La Ke Buena',       siglas: 'XEBA',   banda: 'FM', rating: 0.357, isOwn: false },
+    { rank: 5, name: 'Fiesta Mexicana',   siglas: 'XHBIO',  banda: 'FM', rating: 0.344, isOwn: true  },
+  ],
 };
 
 export const partnerLogos = [

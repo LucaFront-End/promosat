@@ -72,7 +72,7 @@ export default function Navbar() {
             alt={siteConfig.name}
             className="navbar__logo"
           />
-          <span className="navbar__name">Promosat</span>
+          <span className="navbar__name">Promosat de México</span>
         </Link>
 
         <div className="navbar__links">

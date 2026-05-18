@@ -76,8 +76,9 @@ export default function RatingLeaderboard() {
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            {data.month} {data.year}
+            INRA Marzo, 2026
           </div>
+          <div className="rating-lb__demographic">Personas 25-54 AB</div>
         </div>
 
         {/* Main Content Grid */}
@@ -178,7 +179,7 @@ export default function RatingLeaderboard() {
             </div>
 
             <p className="rating-lb__disclaimer">
-              * Datos sujetos a actualización mensual. Fuente: monitoreo de audiencias ZMG.
+              * Fuente: INRA Marzo 2026 · Personas 25-54 AB · ZMG.
             </p>
           </div>
         </div>

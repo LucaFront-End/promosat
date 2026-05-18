@@ -1,6 +1,9 @@
 # Source assets from Drive (too large for GitHub)
 drive-content/
+palcco_photos/
+ppt_extracted/
 *.zip
+*.pptx
 
 # Logs
 logs

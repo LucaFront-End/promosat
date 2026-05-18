@@ -77,6 +77,16 @@
   border-radius: 20px;
 }
 
+.rating-lb__demographic {
+  margin-top: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* ── Main Grid ── */
 .rating-lb__grid {
   display: grid;

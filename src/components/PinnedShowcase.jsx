@@ -87,7 +87,7 @@ function ShowcaseCard({ company, index }) {
   return (
     <div className="showcase-card">
       <div className="showcase-card__number">0{index + 1}</div>
-      <div className={`showcase-card__img-wrap ${index === 0 ? 'showcase-card__img-wrap--dark' : ''}`}>
+      <div className="showcase-card__img-wrap">
         <img src={company.logo} alt={company.name} className="showcase-card__logo" />
       </div>
       <h3 className="heading-md" style={{ marginTop: '1.5rem', marginBottom: '0.75rem' }}>{company.name}</h3>

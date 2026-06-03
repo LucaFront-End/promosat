@@ -50,7 +50,8 @@ export const aboutContent = {
     {
       name: 'Promosat Radio',
       description: 'Somos una empresa líder, con nuestra oferta comercial en emisoras de radio para todo el país, con más de 55 años, conectando la comunicación de nuestras marcas con nuestras audiencias.',
-      logo: 'https://static.wixstatic.com/media/45119e_3c68ef573a2748c88e4cc8760aaee02f~mv2.png/v1/crop/x_105,y_75,w_607,h_687/fill/w_200,h_226,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PROMOSAT%20DE%20M%C3%89XICO-02.png',
+      logo: '/images/promosat-radio.jpg',
+
       href: null
     },
     {

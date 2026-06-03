@@ -84,10 +84,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Dark variant for white logos (Promosat) */
-.showcase-card__img-wrap--dark {
-  background: #0c0c1e;
-}
+
 
 .showcase-card__logo {
   max-width: 80%;

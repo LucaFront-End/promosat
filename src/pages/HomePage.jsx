@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <>
       {loadingObj && <Preloader onComplete={() => setLoadingObj(false)} />}
-      <Hero />
+      <Hero preloaderDone={!loadingObj} />
       <TextReveal />
       <PinnedShowcase />
       <AdvantagesPremium />

@@ -95,6 +95,47 @@
   50% { opacity: 1; transform: scaleY(1); }
 }
 
+/* ── Sound Toggle Button ── */
+.hero-cinematic__sound-toggle {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: rgba(10, 10, 20, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: soundPulse 2.5s ease-in-out infinite;
+}
+
+.hero-cinematic__sound-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  animation: none;
+}
+
+@keyframes soundPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+  50% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 6px rgba(255, 255, 255, 0.06); }
+}
+
 /* ── Layer 4: Video Caption ── */
 .hero-cinematic__player-caption {
   position: absolute;

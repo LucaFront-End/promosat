@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../data/content';
@@ -14,6 +14,18 @@ export default function Hero() {
   const playerCaptionRef = useRef(null);
   const bgRef = useRef(null);
   const ctaRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleSound = () => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    const newMuted = !vid.muted;
+    vid.muted = newMuted;
+    vid.volume = 1;
+    if (!newMuted) vid.play().catch(() => {});
+    setIsMuted(newMuted);
+  };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,7 +37,6 @@ export default function Hero() {
           pin: true,
           scrub: 1,
           onUpdate: (self) => {
-            // Show floating CTA once the video is fully revealed (progress > 0.78)
             if (ctaRef.current) {
               if (self.progress > 0.78) {
                 ctaRef.current.classList.add('is-visible');
@@ -37,24 +48,15 @@ export default function Hero() {
         },
       });
 
-      // Phase 1 (0→0.15): Fade out scroll hint
       tl.to('.hero-cinematic__scroll-hint', { opacity: 0, duration: 0.15, ease: 'power2.in' }, 0);
-
-      // Phase 2 (0.05→0.75): Scale title massively
       tl.fromTo(titleRef.current, { scale: 1 }, { scale: 40, duration: 0.7, ease: 'power2.in' }, 0.05);
-
-      // Phase 3 (0.55→0.8): Fade out mask → reveals full video
       tl.to(maskRef.current, { opacity: 0, duration: 0.25, ease: 'power1.in' }, 0.55);
-
-      // Phase 4 (0.75→0.95): Fade in video caption
       tl.fromTo(
         playerCaptionRef.current,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.2, ease: 'power1.out' },
         0.75
       );
-
-      // Phase 5: Slight bg zoom for depth
       tl.to(bgRef.current, { scale: 1.1, duration: 0.3, ease: 'none' }, 0.55);
 
     }, sectionRef);
@@ -68,9 +70,14 @@ export default function Hero() {
       {/* ── Layer 1: Video Background ── */}
       <div className="hero-cinematic__bg" ref={bgRef}>
         <video
+          ref={videoRef}
           className="hero-cinematic__bg-video"
           src={HERO_VIDEO}
-          autoPlay muted loop playsInline preload="auto"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
         />
       </div>
 
@@ -78,6 +85,28 @@ export default function Hero() {
       <div ref={maskRef} className="hero-cinematic__mask">
         <h1 ref={titleRef} className="hero-cinematic__title">PROMOSAT</h1>
       </div>
+
+      {/* ── Sound Toggle ── */}
+      <button
+        className="hero-cinematic__sound-toggle"
+        onClick={toggleSound}
+        aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
+      >
+        {isMuted ? (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+          </svg>
+        ) : (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          </svg>
+        )}
+        <span>{isMuted ? 'Sonido' : 'Silenciar'}</span>
+      </button>
 
       {/* ── Layer 3: Scroll Hint ── */}
       <div className="hero-cinematic__scroll-hint">

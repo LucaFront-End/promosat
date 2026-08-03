@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { saveBrochureLead } from '../lib/wixClient';
 import './BrochureModal.css';
 
 export const MEXICAN_STATES = [
@@ -45,11 +46,44 @@ export const COMPANY_TYPES = [
   'Profesional Independiente'
 ];
 
+export const COUNTRY_LADAS = [
+  { code: '+52', country: 'México 🇲🇽' },
+  { code: '+1', country: 'EE.UU. / Canadá 🇺🇸' },
+  { code: '+54', country: 'Argentina 🇦🇷' },
+  { code: '+56', country: 'Chile 🇨🇱' },
+  { code: '+57', country: 'Colombia 🇨🇴' },
+  { code: '+34', country: 'España 🇪🇸' },
+  { code: '+51', country: 'Perú 🇵🇪' },
+  { code: '+502', country: 'Guatemala 🇬🇹' },
+  { code: '+503', country: 'El Salvador 🇸🇻' },
+  { code: '+504', country: 'Honduras 🇭🇳' },
+  { code: '+506', country: 'Costa Rica 🇨🇷' },
+  { code: '+507', country: 'Panamá 🇵🇦' },
+];
+
+const DISALLOWED_EMAIL_DOMAINS = [
+  'gmail.com',
+  'hotmail.com',
+  'outlook.com',
+  'yahoo.com',
+  'live.com',
+  'icloud.com',
+  'hotmail.es',
+  'outlook.es',
+  'yahoo.es',
+  'gmx.com',
+  'mail.com'
+];
+
 export default function BrochureModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  
   const [formData, setFormData] = useState({
     nombre: '',
+    lada: '+52',
     telefono: '',
     correo: '',
     ciudad: '',
@@ -59,12 +93,13 @@ export default function BrochureModal() {
   useEffect(() => {
     const handleOpen = () => {
       setSubmitted(false);
+      setLoading(false);
+      setEmailError('');
       setIsOpen(true);
     };
 
     window.addEventListener('open-brochure-modal', handleOpen);
     
-    // Also listen to any click on elements with data-open-brochure
     const handleClick = (e) => {
       const target = e.target.closest('[data-open-brochure]');
       if (target) {
@@ -80,16 +115,52 @@ export default function BrochureModal() {
     };
   }, []);
 
+  const validateEmail = (email) => {
+    if (!email) {
+      setEmailError('');
+      return true;
+    }
+
+    const lowerEmail = email.toLowerCase().trim();
+    const domainPart = lowerEmail.split('@')[1];
+
+    if (domainPart && DISALLOWED_EMAIL_DOMAINS.includes(domainPart)) {
+      setEmailError('Por favor ingresa un correo profesional o corporativo (no se permiten dominios de correo personal como @gmail.com, @hotmail.com o @outlook.com).');
+      return false;
+    }
+
+    setEmailError('');
+    return true;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'correo') {
+      validateEmail(value);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateEmail(formData.correo)) {
+      return;
+    }
+
+    setLoading(true);
+
+    // Save lead to Wix CMS
+    await saveBrochureLead({
+      ...formData,
+      telefonoFull: `${formData.lada} ${formData.telefono}`
+    });
+
+    setLoading(false);
     setSubmitted(true);
 
-    // Trigger brochure download
+    // Trigger brochure PDF download
     const link = document.createElement('a');
     link.href = '/docs/Brochure_Promosat_2026.pdf';
     link.download = 'Brochure_Promosat_2026.pdf';
@@ -146,32 +217,54 @@ export default function BrochureModal() {
                     />
                   </div>
 
-                  <div className="brochure-modal__grid">
-                    <div className="brochure-modal__field">
-                      <label htmlFor="bm-telefono">Teléfono</label>
+                  {/* Lada + Teléfono */}
+                  <div className="brochure-modal__field">
+                    <label htmlFor="bm-telefono">Teléfono</label>
+                    <div className="brochure-modal__phone-group">
+                      <select
+                        name="lada"
+                        value={formData.lada}
+                        onChange={handleChange}
+                        className="brochure-modal__lada-select"
+                        title="Clave Lada de País"
+                      >
+                        {COUNTRY_LADAS.map((l) => (
+                          <option key={l.code} value={l.code}>
+                            {l.code} ({l.country})
+                          </option>
+                        ))}
+                      </select>
                       <input
                         type="tel"
                         id="bm-telefono"
                         name="telefono"
                         required
-                        placeholder="+52 55 1234 5678"
+                        placeholder="55 1234 5678"
                         value={formData.telefono}
                         onChange={handleChange}
+                        className="brochure-modal__phone-input"
                       />
                     </div>
+                  </div>
 
-                    <div className="brochure-modal__field">
-                      <label htmlFor="bm-correo">Correo electrónico</label>
-                      <input
-                        type="email"
-                        id="bm-correo"
-                        name="correo"
-                        required
-                        placeholder="ejemplo@empresa.com"
-                        value={formData.correo}
-                        onChange={handleChange}
-                      />
-                    </div>
+                  {/* Correo Corporativo / Profesional */}
+                  <div className="brochure-modal__field">
+                    <label htmlFor="bm-correo">Correo electrónico profesional</label>
+                    <input
+                      type="email"
+                      id="bm-correo"
+                      name="correo"
+                      required
+                      placeholder="ejemplo@tuempresa.com"
+                      value={formData.correo}
+                      onChange={handleChange}
+                      className={emailError ? 'has-error' : ''}
+                    />
+                    {emailError && (
+                      <span className="brochure-modal__error-text">
+                        {emailError}
+                      </span>
+                    )}
                   </div>
 
                   <div className="brochure-modal__field">
@@ -206,22 +299,26 @@ export default function BrochureModal() {
                     </select>
                   </div>
 
-                  <button type="submit" className="btn btn--primary brochure-modal__submit">
+                  <button
+                    type="submit"
+                    className="btn btn--primary brochure-modal__submit"
+                    disabled={loading || !!emailError}
+                  >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
                       <polyline points="7 10 12 15 17 10"/>
                       <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
-                    Descargar Brochure PDF
+                    {loading ? 'Procesando...' : 'Descargar Brochure PDF'}
                   </button>
                 </form>
               </>
             ) : (
               <div className="brochure-modal__success">
                 <div className="brochure-modal__success-icon">✓</div>
-                <h3 className="heading-md">¡Gracias por tu interés!</h3>
+                <h3 className="heading-md">¡Consulta registrada con éxito!</h3>
                 <p className="body-sm">
-                  La descarga del Brochure Comercial de Promosat ha comenzado automáticamente.
+                  La descarga del Brochure Comercial de Promosat de México ha comenzado automáticamente.
                 </p>
                 <button className="btn btn--secondary" onClick={closeModal} style={{ marginTop: '1.5rem' }}>
                   Cerrar

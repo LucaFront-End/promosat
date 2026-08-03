@@ -124,6 +124,33 @@
   box-shadow: 0 0 0 3px rgba(208, 59, 68, 0.2);
 }
 
+.brochure-modal__phone-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.brochure-modal__lada-select {
+  flex: 0 0 110px !important;
+  font-weight: 600;
+  color: var(--color-accent) !important;
+}
+
+.brochure-modal__phone-input {
+  flex: 1;
+}
+
+.brochure-modal__field input.has-error {
+  border-color: #e85555 !important;
+  background: rgba(232, 85, 85, 0.08) !important;
+}
+
+.brochure-modal__error-text {
+  font-size: 0.76rem;
+  color: #e85555;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
 .brochure-modal__submit {
   width: 100%;
   margin-top: 0.75rem;

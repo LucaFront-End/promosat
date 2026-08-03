@@ -47,18 +47,18 @@ export const COMPANY_TYPES = [
 ];
 
 export const COUNTRY_LADAS = [
-  { code: '+52', country: 'México 🇲🇽' },
-  { code: '+1', country: 'EE.UU. / Canadá 🇺🇸' },
-  { code: '+54', country: 'Argentina 🇦🇷' },
-  { code: '+56', country: 'Chile 🇨🇱' },
-  { code: '+57', country: 'Colombia 🇨🇴' },
-  { code: '+34', country: 'España 🇪🇸' },
-  { code: '+51', country: 'Perú 🇵🇪' },
-  { code: '+502', country: 'Guatemala 🇬🇹' },
-  { code: '+503', country: 'El Salvador 🇸🇻' },
-  { code: '+504', country: 'Honduras 🇭🇳' },
-  { code: '+506', country: 'Costa Rica 🇨🇷' },
-  { code: '+507', country: 'Panamá 🇵🇦' },
+  { code: '+52', flag: '🇲🇽', name: 'México' },
+  { code: '+1', flag: '🇺🇸', name: 'EE.UU. / Canadá' },
+  { code: '+54', flag: '🇦🇷', name: 'Argentina' },
+  { code: '+56', flag: '🇨🇱', name: 'Chile' },
+  { code: '+57', flag: '🇨🇴', name: 'Colombia' },
+  { code: '+34', flag: '🇪🇸', name: 'España' },
+  { code: '+51', flag: '🇵🇪', name: 'Perú' },
+  { code: '+502', flag: '🇬🇹', name: 'Guatemala' },
+  { code: '+503', flag: '🇸🇻', name: 'El Salvador' },
+  { code: '+504', flag: '🇭🇳', name: 'Honduras' },
+  { code: '+506', flag: '🇨🇷', name: 'Costa Rica' },
+  { code: '+507', flag: '🇵🇦', name: 'Panamá' },
 ];
 
 const DISALLOWED_EMAIL_DOMAINS = [
@@ -230,7 +230,7 @@ export default function BrochureModal() {
                       >
                         {COUNTRY_LADAS.map((l) => (
                           <option key={l.code} value={l.code}>
-                            {l.code} ({l.country})
+                            {l.flag} {l.code} ({l.name})
                           </option>
                         ))}
                       </select>

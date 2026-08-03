@@ -2,7 +2,7 @@ import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 
 const WIX_CLIENT_ID = '3081c994-0ab4-41d7-9829-1022836f45a7';
-export const WIX_LEADS_COLLECTION = 'Consultas'; // Name of collection created in Wix CMS
+export const WIX_LEADS_COLLECTION = 'Descargarboletin'; // Wix CMS Collection ID for Brochure downloads / Consultas
 
 export const wixClient = createClient({
   modules: { items },
@@ -56,14 +56,13 @@ export async function saveBrochureLead(leadData, collectionId = WIX_LEADS_COLLEC
       correo: leadData.correo,
       ciudad: leadData.ciudad,
       tipoEmpresa: leadData.tipoEmpresa,
-      fechaRegistro: new Date().toISOString()
     };
 
     const result = await wixClient.items.insert(collectionId, payload);
-    console.log('Lead saved to Wix CMS successfully:', result);
+    console.log(`Lead saved successfully to Wix CMS collection "${collectionId}":`, result);
     return { success: true, result };
   } catch (error) {
-    console.warn('Wix CMS save notice (proceeding with brochure download):', error.message || error);
+    console.warn(`Wix CMS insert notice on "${collectionId}":`, error.message || error);
     return { success: false, error };
   }
 }

@@ -15,12 +15,15 @@ import PromediaPage from './pages/PromediaPage';
 import CanalContinentalPage from './pages/CanalContinentalPage';
 import PalccoPage from './pages/PalccoPage';
 
+import BrochureModal from './components/BrochureModal';
+
 export default function App() {
   return (
     <>
       <div className="noise-overlay"></div>
       <div className="vignette-glow"></div>
       <ScrollToTop />
+      <BrochureModal />
       <SmoothScroll>
         <CustomCursor activeBlendMode={true} />
         <Navbar />

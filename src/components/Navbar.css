@@ -205,6 +205,14 @@
   border-color: rgba(208,59,68,0.3);
 }
 
+.navbar__brochure-btn {
+  padding: 8px 18px;
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50px;
+}
+
 .navbar__cta {
   padding: 10px 24px;
   font-size: 0.85rem;

@@ -1,12 +1,15 @@
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { siteConfig, offices } from '../data/content';
+import { sendFormSubmitEmail } from '../lib/sendEmail';
 import RadioWaveCanvas from '../components/RadioWaveCanvas';
 import './ContactPage.css';
 
 export default function ContactPage() {
   const containerRef = useRef(null);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -31,13 +34,23 @@ export default function ContactPage() {
     return () => ctx.revert();
   }, []);
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const msg = encodeURIComponent(
-      `Hola, mi nombre es ${formData.name}.\nEmpresa: ${formData.company || 'N/A'}\nEmail: ${formData.email}\nTeléfono: ${formData.phone || 'N/A'}\n\n${formData.message}`
-    );
-    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent('Contacto desde sitio web - ' + formData.name)}&body=${msg}`;
+    setLoading(true);
+
+    await sendFormSubmitEmail({
+      subject: `Nuevo Mensaje de Contacto - ${formData.name}`,
+      formData: {
+        'Nombre': formData.name,
+        'Correo': formData.email,
+        'Teléfono': formData.phone || 'N/A',
+        'Empresa / Marca': formData.company || 'N/A',
+        'Mensaje': formData.message
+      }
+    });
+
+    setLoading(false);
+    setSent(true);
   };
 
   const handleChange = (e) => {
@@ -78,41 +91,70 @@ export default function ContactPage() {
             <div className="cp-glass-panel cp-form-container">
               <div className="cp-glass-edges"></div>
               <h2 className="cp-panel-title">Envíanos un mensaje</h2>
-              <form className="cp-form" onSubmit={handleSubmit}>
-                <div className="cp-form__row">
-                  <div className="cp-input-group">
-                    <input type="text" name="name" id="cname" value={formData.name} onChange={handleChange} required placeholder=" " />
-                    <label htmlFor="cname">Nombre completo *</label>
-                    <div className="cp-input-border"></div>
+
+              {!sent ? (
+                <form className="cp-form" onSubmit={handleSubmit}>
+                  <div className="cp-form__row">
+                    <div className="cp-input-group">
+                      <input type="text" name="name" id="cname" value={formData.name} onChange={handleChange} required placeholder=" " />
+                      <label htmlFor="cname">Nombre completo *</label>
+                      <div className="cp-input-border"></div>
+                    </div>
+                    <div className="cp-input-group">
+                      <input type="email" name="email" id="cemail" value={formData.email} onChange={handleChange} required placeholder=" " />
+                      <label htmlFor="cemail">Correo electrónico *</label>
+                      <div className="cp-input-border"></div>
+                    </div>
+                  </div>
+                  <div className="cp-form__row">
+                    <div className="cp-input-group">
+                      <input type="tel" name="phone" id="cphone" value={formData.phone} onChange={handleChange} placeholder=" " />
+                      <label htmlFor="cphone">Teléfono (opcional)</label>
+                      <div className="cp-input-border"></div>
+                    </div>
+                    <div className="cp-input-group">
+                      <input type="text" name="company" id="ccompany" value={formData.company} onChange={handleChange} placeholder=" " />
+                      <label htmlFor="ccompany">Compañía (opcional)</label>
+                      <div className="cp-input-border"></div>
+                    </div>
                   </div>
                   <div className="cp-input-group">
-                    <input type="email" name="email" id="cemail" value={formData.email} onChange={handleChange} required placeholder=" " />
-                    <label htmlFor="cemail">Correo electrónico *</label>
+                    <textarea name="message" id="cmessage" value={formData.message} onChange={handleChange} required rows="5" placeholder=" "></textarea>
+                    <label htmlFor="cmessage">¿Cómo podemos ayudarte? *</label>
                     <div className="cp-input-border"></div>
                   </div>
+                  <button type="submit" className="btn btn--primary cp-submit-btn" disabled={loading}>
+                    <span>{loading ? 'Enviando...' : 'Iniciar Conversación'}</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                  </button>
+                </form>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                  <div style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    background: 'rgba(208, 59, 68, 0.15)',
+                    color: 'var(--color-accent)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '2rem',
+                    fontWeight: 'bold',
+                    margin: '0 auto 1.5rem',
+                    border: '1px solid var(--color-accent)'
+                  }}>
+                    ✓
+                  </div>
+                  <h3 className="heading-md" style={{ marginBottom: '0.75rem', color: '#fff' }}>¡Mensaje enviado con éxito!</h3>
+                  <p className="body-sm" style={{ color: 'var(--color-text-secondary)', maxWidth: '420px', margin: '0 auto 1.5rem' }}>
+                    Gracias por contactarnos. Nuestro equipo revisará tu mensaje y se pondrá en contacto contigo a la brevedad.
+                  </p>
+                  <button className="btn btn--outline" onClick={() => { setSent(false); setFormData({ name: '', email: '', phone: '', company: '', message: '' }); }}>
+                    Enviar otro mensaje
+                  </button>
                 </div>
-                <div className="cp-form__row">
-                  <div className="cp-input-group">
-                    <input type="tel" name="phone" id="cphone" value={formData.phone} onChange={handleChange} placeholder=" " />
-                    <label htmlFor="cphone">Teléfono (opcional)</label>
-                    <div className="cp-input-border"></div>
-                  </div>
-                  <div className="cp-input-group">
-                    <input type="text" name="company" id="ccompany" value={formData.company} onChange={handleChange} placeholder=" " />
-                    <label htmlFor="ccompany">Compañía (opcional)</label>
-                    <div className="cp-input-border"></div>
-                  </div>
-                </div>
-                <div className="cp-input-group">
-                  <textarea name="message" id="cmessage" value={formData.message} onChange={handleChange} required rows="5" placeholder=" "></textarea>
-                  <label htmlFor="cmessage">¿Cómo podemos ayudarte? *</label>
-                  <div className="cp-input-border"></div>
-                </div>
-                <button type="submit" className="btn btn--primary cp-submit-btn">
-                  <span>Iniciar Conversación</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                </button>
-              </form>
+              )}
             </div>
 
             {/* Sidebar Cards */}

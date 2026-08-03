@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { saveBrochureLead } from '../lib/wixClient';
+import { sendFormSubmitEmail } from '../lib/sendEmail';
 import './BrochureModal.css';
 
 export const MEXICAN_STATES = [
@@ -222,6 +223,18 @@ export default function BrochureModal() {
     await saveBrochureLead({
       ...formData,
       telefonoFull: `${formData.lada} ${formData.telefono}`
+    });
+
+    // Send notification email via FormSubmit.co to ventas@promosat.com & test1@dilodigitalmx.com
+    await sendFormSubmitEmail({
+      subject: `Nueva Descarga de Brochure - ${formData.nombre}`,
+      formData: {
+        'Nombre Completo': formData.nombre,
+        'Teléfono': `${formData.lada} ${formData.telefono}`,
+        'Correo Profesional': formData.correo,
+        'Estado': formData.ciudad,
+        'Tipo de Empresa': formData.tipoEmpresa
+      }
     });
 
     setLoading(false);

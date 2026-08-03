@@ -1,16 +1,42 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ratingRanking } from '../data/content';
+import { fetchTop5Rating } from '../lib/wixClient';
 import './RatingLeaderboard.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function RatingLeaderboard() {
   const sectionRef = useRef(null);
-  const data = ratingRanking;
-  const maxRating = Math.max(...data.stations.map(s => s.rating));
+  const [data, setData] = useState({
+    market: ratingRanking.market,
+    headline: ratingRanking.headline,
+    subtitle: ratingRanking.subtitle,
+    periodo: 'Marzo, 2026',
+    personas: 'Personas 25-54 AB',
+    stations: ratingRanking.stations,
+  });
+
+  useEffect(() => {
+    async function loadWixData() {
+      const wixData = await fetchTop5Rating();
+      if (wixData && wixData.stations && wixData.stations.length > 0) {
+        setData(prev => ({
+          ...prev,
+          periodo: wixData.periodo,
+          personas: wixData.personas,
+          stations: wixData.stations,
+        }));
+      }
+    }
+    loadWixData();
+  }, []);
+
+  const maxRating = Math.max(...data.stations.map(s => s.rating || 0.001));
   const ownCount = data.stations.filter(s => s.isOwn).length;
+  const topStation = data.stations.find(s => s.rank === 1) || data.stations[0];
+  const ownPercentage = Math.round((ownCount / (data.stations.length || 1)) * 100);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -53,7 +79,7 @@ export default function RatingLeaderboard() {
 
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [data.stations]);
 
   return (
     <section className="rating-lb" ref={sectionRef}>
@@ -76,9 +102,9 @@ export default function RatingLeaderboard() {
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            INRA Marzo, 2026
+            INRA {data.periodo}
           </div>
-          <div className="rating-lb__demographic">Personas 25-54 AB</div>
+          <div className="rating-lb__demographic">{data.personas}</div>
         </div>
 
         {/* Main Content Grid */}
@@ -97,10 +123,10 @@ export default function RatingLeaderboard() {
             {/* Table Body */}
             <div className="rating-lb__table">
               {data.stations.map((station) => {
-                const pct = (station.rating / maxRating) * 100;
+                const pct = maxRating > 0 ? (station.rating / maxRating) * 100 : 0;
                 return (
                   <div
-                    key={station.rank}
+                    key={station.rank || station.name}
                     className={`rating-lb__row ${station.isOwn ? 'rating-lb__row--own' : ''} ${station.rank === 1 ? 'rating-lb__row--first' : ''}`}
                   >
                     <div className="rating-lb__rank">
@@ -134,7 +160,7 @@ export default function RatingLeaderboard() {
                         <div
                           className={`rating-lb__bar-fill ${station.isOwn ? 'rating-lb__bar-fill--own' : ''}`}
                           data-width={pct}
-                          style={{ width: 0 }}
+                          style={{ width: `${pct}%` }}
                         />
                       </div>
                     </div>
@@ -165,7 +191,7 @@ export default function RatingLeaderboard() {
                 </svg>
               </div>
               <div className="rating-lb__stat-value">#1</div>
-              <p className="rating-lb__stat-desc">Radio Mujer lidera con 0.529 de rating global</p>
+              <p className="rating-lb__stat-desc">{topStation ? `${topStation.name} lidera con ${topStation.rating.toFixed(3)} de rating global` : ''}</p>
             </div>
 
             <div className="rating-lb__stat-card">
@@ -174,12 +200,12 @@ export default function RatingLeaderboard() {
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                 </svg>
               </div>
-              <div className="rating-lb__stat-value">60%</div>
+              <div className="rating-lb__stat-value">{ownPercentage}%</div>
               <p className="rating-lb__stat-desc">Del Top 5 le pertenece a Promosat de México</p>
             </div>
 
             <p className="rating-lb__disclaimer">
-              * Fuente: INRA Marzo 2026 · Personas 25-54 AB · ZMG.
+              * Fuente: INRA {data.periodo} · {data.personas} · ZMG.
             </p>
           </div>
         </div>

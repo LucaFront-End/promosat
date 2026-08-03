@@ -13,6 +13,8 @@
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "@gsap/react": "^2.1.2",
+    "@wix/data": "^1.0.500",
+    "@wix/sdk": "^1.21.14",
     "framer-motion": "^12.38.0",
     "gsap": "^3.14.2",
     "leaflet": "^1.9.4",

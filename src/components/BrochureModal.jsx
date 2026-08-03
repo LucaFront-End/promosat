@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { saveBrochureLead } from '../lib/wixClient';
 import './BrochureModal.css';
@@ -47,18 +47,18 @@ export const COMPANY_TYPES = [
 ];
 
 export const COUNTRY_LADAS = [
-  { code: '+52', flag: '🇲🇽', name: 'México' },
-  { code: '+1', flag: '🇺🇸', name: 'EE.UU. / Canadá' },
-  { code: '+54', flag: '🇦🇷', name: 'Argentina' },
-  { code: '+56', flag: '🇨🇱', name: 'Chile' },
-  { code: '+57', flag: '🇨🇴', name: 'Colombia' },
-  { code: '+34', flag: '🇪🇸', name: 'España' },
-  { code: '+51', flag: '🇵🇪', name: 'Perú' },
-  { code: '+502', flag: '🇬🇹', name: 'Guatemala' },
-  { code: '+503', flag: '🇸🇻', name: 'El Salvador' },
-  { code: '+504', flag: '🇭🇳', name: 'Honduras' },
-  { code: '+506', flag: '🇨🇷', name: 'Costa Rica' },
-  { code: '+507', flag: '🇵🇦', name: 'Panamá' },
+  { code: '+52', iso: 'mx', name: 'México' },
+  { code: '+1', iso: 'us', name: 'EE.UU. / Canadá' },
+  { code: '+54', iso: 'ar', name: 'Argentina' },
+  { code: '+56', iso: 'cl', name: 'Chile' },
+  { code: '+57', iso: 'co', name: 'Colombia' },
+  { code: '+34', iso: 'es', name: 'España' },
+  { code: '+51', iso: 'pe', name: 'Perú' },
+  { code: '+502', iso: 'gt', name: 'Guatemala' },
+  { code: '+503', iso: 'sv', name: 'El Salvador' },
+  { code: '+504', iso: 'hn', name: 'Honduras' },
+  { code: '+506', iso: 'cr', name: 'Costa Rica' },
+  { code: '+507', iso: 'pa', name: 'Panamá' },
 ];
 
 const DISALLOWED_EMAIL_DOMAINS = [
@@ -74,6 +74,73 @@ const DISALLOWED_EMAIL_DOMAINS = [
   'gmx.com',
   'mail.com'
 ];
+
+function LadaCustomSelect({ value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef(null);
+  const selected = COUNTRY_LADAS.find(c => c.code === value) || COUNTRY_LADAS[0];
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="lada-custom" ref={containerRef}>
+      <button
+        type="button"
+        className="lada-custom__trigger"
+        onClick={() => setOpen(!open)}
+        title="Seleccionar Clave Lada"
+      >
+        <img
+          src={`https://flagcdn.com/w40/${selected.iso}.png`}
+          alt={selected.name}
+          className="lada-custom__flag-img"
+        />
+        <span className="lada-custom__code-text">{selected.code}</span>
+        <span className={`lada-custom__arrow ${open ? 'is-open' : ''}`}>▾</span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="lada-custom__dropdown"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.15 }}
+          >
+            {COUNTRY_LADAS.map((c) => (
+              <button
+                key={c.code}
+                type="button"
+                className={`lada-custom__option ${c.code === value ? 'is-selected' : ''}`}
+                onClick={() => {
+                  onChange(c.code);
+                  setOpen(false);
+                }}
+              >
+                <img
+                  src={`https://flagcdn.com/w40/${c.iso}.png`}
+                  alt={c.name}
+                  className="lada-custom__flag-img"
+                />
+                <span className="lada-custom__option-code">{c.code}</span>
+                <span className="lada-custom__option-name">{c.name}</span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function BrochureModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -151,7 +218,7 @@ export default function BrochureModal() {
 
     setLoading(true);
 
-    // Save lead to Wix CMS
+    // Save lead to Wix CMS collection Descargarboletin
     await saveBrochureLead({
       ...formData,
       telefonoFull: `${formData.lada} ${formData.telefono}`
@@ -221,19 +288,10 @@ export default function BrochureModal() {
                   <div className="brochure-modal__field">
                     <label htmlFor="bm-telefono">Teléfono</label>
                     <div className="brochure-modal__phone-group">
-                      <select
-                        name="lada"
+                      <LadaCustomSelect
                         value={formData.lada}
-                        onChange={handleChange}
-                        className="brochure-modal__lada-select"
-                        title="Clave Lada de País"
-                      >
-                        {COUNTRY_LADAS.map((l) => (
-                          <option key={l.code} value={l.code}>
-                            {l.flag} {l.code} ({l.name})
-                          </option>
-                        ))}
-                      </select>
+                        onChange={(newLada) => setFormData(prev => ({ ...prev, lada: newLada }))}
+                      />
                       <input
                         type="tel"
                         id="bm-telefono"

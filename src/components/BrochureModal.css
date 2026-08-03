@@ -129,10 +129,104 @@
   gap: 0.5rem;
 }
 
-.brochure-modal__lada-select {
-  flex: 0 0 110px !important;
-  font-weight: 600;
-  color: var(--color-accent) !important;
+.lada-custom {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.lada-custom__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.8rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  height: 100%;
+  transition: all 0.25s ease;
+}
+
+.lada-custom__trigger:hover {
+  border-color: rgba(208, 59, 68, 0.4);
+  background: rgba(208, 59, 68, 0.06);
+}
+
+.lada-custom__flag-img {
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.lada-custom__code-text {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.lada-custom__arrow {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  transition: transform 0.2s ease;
+}
+
+.lada-custom__arrow.is-open {
+  transform: rotate(180deg);
+}
+
+.lada-custom__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  width: 220px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: #0B1424;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.4rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.lada-custom__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lada-custom__option:hover,
+.lada-custom__option.is-selected {
+  background: rgba(208, 59, 68, 0.12);
+  color: #ffffff;
+}
+
+.lada-custom__option-code {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.lada-custom__option-name {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .brochure-modal__phone-input {

@@ -41,10 +41,12 @@ export default function RatingLeaderboard() {
 
   const activeStations = data.stations.length > 0 ? data.stations : ratingRanking.stations;
   const maxRating = Math.max(...activeStations.map(s => s.rating || 0.001));
+  const totalCount = activeStations.length;
   const ownCount = activeStations.filter(s => s.isOwn).length;
-  const ownPercentage = Math.round((ownCount / (activeStations.length || 1)) * 100);
+  const ownPercentage = Math.round((ownCount / (totalCount || 1)) * 100);
 
   // Find the highest ranking Promosat station (best position)
+  const isBestOwn = !!activeStations.find(s => s.isOwn);
   const bestOwnStation = activeStations.find(s => s.isOwn) || activeStations[0];
 
   useLayoutEffect(() => {
@@ -185,10 +187,10 @@ export default function RatingLeaderboard() {
             <div className="rating-lb__stat-card rating-lb__stat-card--hero">
               <div className="rating-lb__stat-number">
                 <span className="rating-lb__own-count">{ownCount}</span>
-                <span className="rating-lb__stat-of">/5</span>
+                <span className="rating-lb__stat-of">/{totalCount}</span>
               </div>
               <p className="rating-lb__stat-label">
-                Emisoras de <strong>Promosat de México</strong> en el Top 5
+                {ownCount === 1 ? 'Emisora' : 'Emisoras'} de <strong>Promosat de México</strong> en el Top {totalCount}
               </p>
             </div>
 
@@ -202,7 +204,9 @@ export default function RatingLeaderboard() {
               <div className="rating-lb__stat-value">#{bestOwnStation ? bestOwnStation.rank : 1}</div>
               <p className="rating-lb__stat-desc">
                 {bestOwnStation
-                  ? `${bestOwnStation.name} posicionada en el lugar #${bestOwnStation.rank} con ${bestOwnStation.rating.toFixed(3)} de rating`
+                  ? isBestOwn
+                    ? `${bestOwnStation.name} posicionada en el lugar #${bestOwnStation.rank} con ${bestOwnStation.rating.toFixed(3)} de rating`
+                    : `${bestOwnStation.name} lidera con ${bestOwnStation.rating.toFixed(3)} de rating global`
                   : ''}
               </p>
             </div>
@@ -215,7 +219,7 @@ export default function RatingLeaderboard() {
                 </svg>
               </div>
               <div className="rating-lb__stat-value">{ownPercentage}%</div>
-              <p className="rating-lb__stat-desc">Del Top 5 le pertenece a Promosat de México</p>
+              <p className="rating-lb__stat-desc">Del Top {totalCount} le pertenece a Promosat de México</p>
             </div>
 
             <p className="rating-lb__disclaimer">

@@ -15,7 +15,7 @@ export default function RatingLeaderboard() {
     subtitle: ratingRanking.subtitle,
     periodo: 'Marzo, 2026',
     personas: 'Personas 25-54 AB',
-    stations: ratingRanking.stations,
+    stations: [], // Start empty so initial state doesn't hardcode 3/5
   });
 
   useEffect(() => {
@@ -28,15 +28,24 @@ export default function RatingLeaderboard() {
           personas: wixData.personas,
           stations: wixData.stations,
         }));
+      } else {
+        // Fallback if fetch fails
+        setData(prev => ({
+          ...prev,
+          stations: ratingRanking.stations,
+        }));
       }
     }
     loadWixData();
   }, []);
 
-  const maxRating = Math.max(...data.stations.map(s => s.rating || 0.001));
-  const ownCount = data.stations.filter(s => s.isOwn).length;
-  const topStation = data.stations.find(s => s.rank === 1) || data.stations[0];
-  const ownPercentage = Math.round((ownCount / (data.stations.length || 1)) * 100);
+  const activeStations = data.stations.length > 0 ? data.stations : ratingRanking.stations;
+  const maxRating = Math.max(...activeStations.map(s => s.rating || 0.001));
+  const ownCount = activeStations.filter(s => s.isOwn).length;
+  const ownPercentage = Math.round((ownCount / (activeStations.length || 1)) * 100);
+
+  // Find the highest ranking Promosat station (best position)
+  const bestOwnStation = activeStations.find(s => s.isOwn) || activeStations[0];
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,18 +77,16 @@ export default function RatingLeaderboard() {
         );
       });
 
-      // Counter animate
-      gsap.from('.rating-lb__own-count', {
-        textContent: 0,
-        duration: 1.5,
-        ease: 'power2.out',
-        snap: { textContent: 1 },
+      // Stat cards fade in
+      gsap.from('.rating-lb__stat-card', {
+        y: 30, opacity: 0, duration: 0.8,
+        stagger: 0.15,
         scrollTrigger: { trigger: '.rating-lb__stats', start: 'top 80%' }
       });
 
     }, sectionRef);
     return () => ctx.revert();
-  }, [data.stations]);
+  }, [activeStations]);
 
   return (
     <section className="rating-lb" ref={sectionRef}>
@@ -122,7 +129,7 @@ export default function RatingLeaderboard() {
 
             {/* Table Body */}
             <div className="rating-lb__table">
-              {data.stations.map((station) => {
+              {activeStations.map((station) => {
                 const pct = maxRating > 0 ? (station.rating / maxRating) * 100 : 0;
                 return (
                   <div
@@ -174,6 +181,7 @@ export default function RatingLeaderboard() {
 
           {/* Stats Sidebar */}
           <div className="rating-lb__stats">
+            {/* Card 1: Count of own stations */}
             <div className="rating-lb__stat-card rating-lb__stat-card--hero">
               <div className="rating-lb__stat-number">
                 <span className="rating-lb__own-count">{ownCount}</span>
@@ -184,16 +192,22 @@ export default function RatingLeaderboard() {
               </p>
             </div>
 
+            {/* Card 2: Best position of Promosat */}
             <div className="rating-lb__stat-card">
               <div className="rating-lb__stat-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                 </svg>
               </div>
-              <div className="rating-lb__stat-value">#1</div>
-              <p className="rating-lb__stat-desc">{topStation ? `${topStation.name} lidera con ${topStation.rating.toFixed(3)} de rating global` : ''}</p>
+              <div className="rating-lb__stat-value">#{bestOwnStation ? bestOwnStation.rank : 1}</div>
+              <p className="rating-lb__stat-desc">
+                {bestOwnStation
+                  ? `${bestOwnStation.name} posicionada en el lugar #${bestOwnStation.rank} con ${bestOwnStation.rating.toFixed(3)} de rating`
+                  : ''}
+              </p>
             </div>
 
+            {/* Card 3: Percentage of representation */}
             <div className="rating-lb__stat-card">
               <div className="rating-lb__stat-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

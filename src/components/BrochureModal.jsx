@@ -242,8 +242,8 @@ export default function BrochureModal() {
 
     // Trigger brochure PDF download
     const link = document.createElement('a');
-    link.href = '/docs/Brochure_Promosat_2026.pdf';
-    link.download = 'Brochure_Promosat_2026.pdf';
+    link.href = '/docs/PROMOSAT_MEDIA_KIT_WEB.pdf';
+    link.download = 'PROMOSAT_MEDIA_KIT_WEB.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

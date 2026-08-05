@@ -45,9 +45,12 @@ export default function RatingLeaderboard() {
   const ownCount = activeStations.filter(s => s.isOwn).length;
   const ownPercentage = Math.round((ownCount / (totalCount || 1)) * 100);
 
-  // Find the highest ranking Promosat station (best position)
+  // Find the highest ranking Promosat station (the top station belonging to Promosat)
   const isBestOwn = !!activeStations.find(s => s.isOwn);
   const bestOwnStation = activeStations.find(s => s.isOwn) || activeStations[0];
+  
+  // The crown 👑 is assigned to the top Promosat station with the most points
+  const crownStationName = bestOwnStation ? bestOwnStation.name : (activeStations[0] && activeStations[0].name);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -133,14 +136,16 @@ export default function RatingLeaderboard() {
             <div className="rating-lb__table">
               {activeStations.map((station) => {
                 const pct = maxRating > 0 ? (station.rating / maxRating) * 100 : 0;
+                const hasCrown = station.name === crownStationName;
+
                 return (
                   <div
                     key={station.rank || station.name}
-                    className={`rating-lb__row ${station.isOwn ? 'rating-lb__row--own' : ''} ${station.rank === 1 ? 'rating-lb__row--first' : ''}`}
+                    className={`rating-lb__row ${station.isOwn ? 'rating-lb__row--own' : ''} ${hasCrown ? 'rating-lb__row--first' : ''}`}
                   >
                     <div className="rating-lb__rank">
-                      {station.rank === 1 ? (
-                        <div className="rating-lb__crown">
+                      {hasCrown ? (
+                        <div className="rating-lb__crown" title="Emisora líder de Promosat">
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5z"/>
                           </svg>

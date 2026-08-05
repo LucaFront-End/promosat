@@ -21,14 +21,25 @@ export async function fetchTop5Rating() {
     }
 
     const firstItem = response.items[0];
-    const periodo = firstItem.periodoConAo || 'JUNIO, 2026';
-    const personas = firstItem.personas || 'GENERAL';
+    const periodo = firstItem.periodoConAo || firstItem.periodo || 'JUNIO, 2026';
+    const personas = firstItem.personas || firstItem.demografico || 'GENERAL';
+    const mercado = firstItem.mercado || firstItem.ciudad || null;
+    const headline = firstItem.titulo || firstItem.headline || null;
+    const subtitle = firstItem.subtitulo || firstItem.subtitle || null;
+    const fuente = firstItem.fuente || 'INRA';
 
     const stations = response.items.map((item) => {
-      const isOwn = !!(item.grupo && item.grupo.toUpperCase().includes('PROMOSAT'));
+      const grupoStr = (item.grupo || item.cadena || item.empresa || '').toString().toUpperCase();
+      const isOwn = grupoStr.includes('PROMOSAT') ||
+                    grupoStr.includes('PROMO SAT') ||
+                    item.promosat === true ||
+                    item.esPromosat === true ||
+                    item.isOwn === true ||
+                    item.esPropia === true;
+
       return {
-        rank: item.orden || 0,
-        name: item.title || '',
+        rank: item.orden ? Number(item.orden) : 0,
+        name: item.title || item.nombre || '',
         siglas: item.siglas || '',
         rating: item.valor ? Number(item.valor) : 0,
         isOwn,
@@ -38,6 +49,10 @@ export async function fetchTop5Rating() {
     return {
       periodo,
       personas,
+      mercado,
+      headline,
+      subtitle,
+      fuente,
       stations,
     };
   } catch (error) {

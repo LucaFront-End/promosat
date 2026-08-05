@@ -15,6 +15,7 @@ export default function RatingLeaderboard() {
     subtitle: ratingRanking.subtitle,
     periodo: 'Marzo, 2026',
     personas: 'Personas 25-54 AB',
+    fuente: 'INRA',
     stations: [], // Start empty so initial state doesn't hardcode 3/5
   });
 
@@ -24,8 +25,12 @@ export default function RatingLeaderboard() {
       if (wixData && wixData.stations && wixData.stations.length > 0) {
         setData(prev => ({
           ...prev,
+          market: wixData.mercado || prev.market,
+          headline: wixData.headline || prev.headline,
+          subtitle: wixData.subtitle || prev.subtitle,
           periodo: wixData.periodo,
           personas: wixData.personas,
+          fuente: wixData.fuente || 'INRA',
           stations: wixData.stations,
         }));
       } else {
@@ -114,7 +119,7 @@ export default function RatingLeaderboard() {
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            INRA {data.periodo}
+            {data.fuente || 'INRA'} {data.periodo}
           </div>
           <div className="rating-lb__demographic">{data.personas}</div>
         </div>
@@ -228,7 +233,7 @@ export default function RatingLeaderboard() {
             </div>
 
             <p className="rating-lb__disclaimer">
-              * Fuente: INRA {data.periodo} · {data.personas} · ZMG.
+              * Fuente: {data.fuente || 'INRA'} {data.periodo} · {data.personas} · {data.market.toUpperCase()}.
             </p>
           </div>
         </div>

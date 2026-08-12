@@ -302,3 +302,30 @@
   .navbar__cta { display: none; }
   .navbar__hamburger { display: flex; }
 }
+
+@media (max-width: 600px) {
+  .navbar__brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .navbar__logo {
+    width: 32px;
+  }
+
+  .navbar__name {
+    font-size: 0.72rem;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .navbar__actions {
+    gap: 0.5rem;
+  }
+
+  .navbar__brochure-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}

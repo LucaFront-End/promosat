@@ -6,7 +6,11 @@
 
 const LFS_BASE = 'https://media.githubusercontent.com/media/LucaFront-End/promosat/main/public/videos';
 
-const isDev = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+const isDev = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1' ||
+  Boolean(import.meta.env?.DEV)
+);
 
 /**
  * Get the full URL for a video file.
@@ -21,7 +25,7 @@ export function getVideoUrl(filename) {
 }
 
 // Pre-built URLs for convenience
-export const HERO_VIDEO = getVideoUrl('hero_reel.mp4');
+export const HERO_VIDEO = getVideoUrl('promosat_corto.mp4');
 
 export const STATION_VIDEOS = {
   leon: getVideoUrl('PROMO_LEON.mp4'),

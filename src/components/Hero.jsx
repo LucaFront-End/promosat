@@ -29,36 +29,71 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=250%',
-          pin: true,
-          scrub: 1,
-          onUpdate: (self) => {
-            if (ctaRef.current) {
-              if (self.progress > 0.78) {
-                ctaRef.current.classList.add('is-visible');
-              } else {
-                ctaRef.current.classList.remove('is-visible');
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 769px)', () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: '+=250%',
+            pin: true,
+            scrub: 1,
+            onUpdate: (self) => {
+              if (ctaRef.current) {
+                if (self.progress > 0.78) {
+                  ctaRef.current.classList.add('is-visible');
+                } else {
+                  ctaRef.current.classList.remove('is-visible');
+                }
               }
-            }
+            },
           },
-        },
+        });
+
+        tl.to('.hero-cinematic__scroll-hint', { opacity: 0, duration: 0.15, ease: 'power2.in' }, 0);
+        tl.fromTo(titleRef.current, { scale: 1 }, { scale: 40, duration: 0.7, ease: 'power2.in' }, 0.05);
+        tl.to(maskRef.current, { opacity: 0, duration: 0.25, ease: 'power1.in' }, 0.55);
+        tl.fromTo(
+          playerCaptionRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.2, ease: 'power1.out' },
+          0.75
+        );
+        tl.to(bgRef.current, { scale: 1.1, duration: 0.3, ease: 'none' }, 0.55);
       });
 
-      tl.to('.hero-cinematic__scroll-hint', { opacity: 0, duration: 0.15, ease: 'power2.in' }, 0);
-      tl.fromTo(titleRef.current, { scale: 1 }, { scale: 40, duration: 0.7, ease: 'power2.in' }, 0.05);
-      tl.to(maskRef.current, { opacity: 0, duration: 0.25, ease: 'power1.in' }, 0.55);
-      tl.fromTo(
-        playerCaptionRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.2, ease: 'power1.out' },
-        0.75
-      );
-      tl.to(bgRef.current, { scale: 1.1, duration: 0.3, ease: 'none' }, 0.55);
+      mm.add('(max-width: 768px)', () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: '+=250%',
+            pin: true,
+            scrub: 1,
+            onUpdate: (self) => {
+              if (ctaRef.current) {
+                if (self.progress > 0.78) {
+                  ctaRef.current.classList.add('is-visible');
+                } else {
+                  ctaRef.current.classList.remove('is-visible');
+                }
+              }
+            },
+          },
+        });
 
+        tl.to('.hero-cinematic__scroll-hint', { opacity: 0, duration: 0.15, ease: 'power2.in' }, 0);
+        tl.fromTo(titleRef.current, { scale: 1 }, { scale: 26, duration: 0.7, ease: 'power2.in' }, 0.05);
+        tl.to(maskRef.current, { opacity: 0, duration: 0.25, ease: 'power1.in' }, 0.55);
+        tl.fromTo(
+          playerCaptionRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.2, ease: 'power1.out' },
+          0.75
+        );
+        // On mobile, bgRef is NOT scaled so 100% of the video is displayed with clean letterbox franjas
+      });
     }, sectionRef);
 
     return () => ctx.revert();

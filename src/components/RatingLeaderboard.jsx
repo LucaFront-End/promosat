@@ -13,10 +13,10 @@ export default function RatingLeaderboard() {
     market: ratingRanking.market,
     headline: ratingRanking.headline,
     subtitle: ratingRanking.subtitle,
-    periodo: 'Marzo, 2026',
-    personas: 'Personas 25-54 AB',
+    periodo: `${ratingRanking.month.toUpperCase()}, ${ratingRanking.year}`,
+    personas: 'GENERAL',
     fuente: 'INRA',
-    stations: [], // Start empty so initial state doesn't hardcode 3/5
+    stations: ratingRanking.stations,
   });
 
   useEffect(() => {

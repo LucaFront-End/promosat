@@ -1,14 +1,18 @@
 import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 
-const WIX_CLIENT_ID = '3081c994-0ab4-41d7-9829-1022836f45a7';
+export const WIX_CLIENT_ID = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_WIX_CLIENT_ID) || '3081c994-0ab4-41d7-9829-1022836f45a7';
 export const WIX_LEADS_COLLECTION = 'Descargarboletin'; // Wix CMS Collection ID for Brochure downloads / Consultas
 
 export const wixClient = createClient({
   modules: { items },
-  auth: OAuthStrategy({ clientId: WIX_CLIENT_ID })
+  auth: OAuthStrategy({ clientId: WIX_CLIENT_ID }),
 });
 
+/**
+ * Fetches the Top 5 Rating leaderboard from the Wix CMS collection "TOP5ReporteAutomatizado".
+ * Fields confirmed from the live CMS: orden, title, siglas, valor, periodoConAo, personas, grupo.
+ */
 export async function fetchTop5Rating() {
   try {
     const response = await wixClient.items
@@ -21,42 +25,29 @@ export async function fetchTop5Rating() {
     }
 
     const firstItem = response.items[0];
-    const periodo = firstItem.periodoConAo || firstItem.periodo || 'JUNIO, 2026';
-    const personas = firstItem.personas || firstItem.demografico || 'GENERAL';
-    const mercado = firstItem.mercado || firstItem.ciudad || null;
-    const headline = firstItem.titulo || firstItem.headline || null;
-    const subtitle = firstItem.subtitulo || firstItem.subtitle || null;
-    const fuente = firstItem.fuente || 'INRA';
 
-    const stations = response.items.map((item) => {
-      const grupoStr = (item.grupo || item.cadena || item.empresa || '').toString().toUpperCase();
-      const isOwn = grupoStr.includes('PROMOSAT') ||
-                    grupoStr.includes('PROMO SAT') ||
-                    item.promosat === true ||
-                    item.esPromosat === true ||
-                    item.isOwn === true ||
-                    item.esPropia === true;
+    const stations = response.items.map((item) => ({
+      rank: Number(item.orden ?? 0),
+      name: item.title || '',
+      siglas: item.siglas || '',
+      rating: Number(item.valor ?? 0),
+      isOwn: (item.grupo || '').toString().toUpperCase().includes('PROMOSAT'),
+    }));
 
-      return {
-        rank: item.orden ? Number(item.orden) : 0,
-        name: item.title || item.nombre || '',
-        siglas: item.siglas || '',
-        rating: item.valor ? Number(item.valor) : 0,
-        isOwn,
-      };
-    });
+    // Ensure stations are ordered by rank ascending
+    stations.sort((a, b) => a.rank - b.rank);
 
     return {
-      periodo,
-      personas,
-      mercado,
-      headline,
-      subtitle,
-      fuente,
+      periodo: firstItem.periodoConAo || '',
+      personas: firstItem.personas || 'GENERAL',
+      mercado: firstItem.mercado || null,
+      headline: firstItem.titulo || null,
+      subtitle: firstItem.subtitulo || null,
+      fuente: firstItem.fuente || 'INRA',
       stations,
     };
   } catch (error) {
-    console.error('Error fetching TOP5ReporteAutomatizado from Wix CMS:', error);
+    console.error('Error fetching ratings from Wix CMS:', error);
     return null;
   }
 }

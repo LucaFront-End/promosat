@@ -263,17 +263,17 @@ export const stationVideos = {
 
 /* ── Rating Ranking (CMS-ready: swap this export for a fetch call) ── */
 export const ratingRanking = {
-  month: 'Mayo',
+  month: 'Agosto',
   year: 2026,
   market: 'Guadalajara',
   headline: 'Top 5 en Rating',
   subtitle: 'Líderes en la Zona Metropolitana de Guadalajara',
   stations: [
-    { rank: 1, name: 'Radio Mujer',      siglas: 'XHEAAA', banda: 'FM', rating: 0.529, isOwn: true  },
-    { rank: 2, name: 'Zona Tres',         siglas: 'XHGEO',  banda: 'FM', rating: 0.45,  isOwn: true  },
-    { rank: 3, name: 'Globo 98.7',        siglas: 'XHLC',   banda: 'FM', rating: 0.437, isOwn: false },
-    { rank: 4, name: 'La Ke Buena',       siglas: 'XEBA',   banda: 'FM', rating: 0.357, isOwn: false },
-    { rank: 5, name: 'Fiesta Mexicana',   siglas: 'XHBIO',  banda: 'FM', rating: 0.344, isOwn: true  },
+    { rank: 1, name: 'LA MEJOR',          siglas: 'XHRO',   banda: 'FM', rating: 0.461, isOwn: false },
+    { rank: 2, name: 'FIESTA MEXICANA',   siglas: 'XHBIO',  banda: 'FM', rating: 0.429, isOwn: true  },
+    { rank: 3, name: 'LA KE BUENA',       siglas: 'XEBA',   banda: 'FM', rating: 0.422, isOwn: false },
+    { rank: 4, name: 'LA BESTIA GRUPERA', siglas: 'XHGDA',  banda: 'FM', rating: 0.288, isOwn: false },
+    { rank: 5, name: 'EXA FM',            siglas: 'XHMA',   banda: 'FM', rating: 0.282, isOwn: false },
   ],
 };
 
